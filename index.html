@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Mix Mart — Tecnologia que resolve</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--blue:#1E90FF;--orange:#FF6B00;--navy:#0D1B3E;--navy2:#152347}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--navy);overflow-x:hidden}
+
+/* HEADER */
+.hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 48px;background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(13,27,62,.4)}
+.logo-img{height:52px;object-fit:contain}
+.nav{display:flex;gap:28px;font-size:13px;font-weight:500;color:rgba(255,255,255,.6)}
+.nav a{cursor:pointer;transition:color .2s;text-decoration:none;color:rgba(255,255,255,.6)}.nav a:hover{color:#fff}
+.nav-cta{padding:9px 20px;background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;border:none;box-shadow:0 4px 14px rgba(255,107,0,.4);transition:all .2s}.nav-cta:hover{transform:translateY(-1px)}
+
+/* HERO */
+.hero{display:flex;align-items:center;justify-content:center;min-height:90vh;padding:40px 48px;gap:60px;background:linear-gradient(135deg,#0D1B3E 0%,#152347 60%,#0D2560 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(30,144,255,.12),transparent 70%);border-radius:50%;pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-80px;left:0;width:400px;height:400px;background:radial-gradient(circle,rgba(255,107,0,.06),transparent 70%);border-radius:50%;pointer-events:none}
+
+/* GENIE */
+.genie-scene{flex:0 0 auto;position:relative;display:flex;flex-direction:column;align-items:center;width:320px}
+.genie-glow{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);width:220px;height:220px;background:radial-gradient(circle,rgba(30,144,255,.2),transparent 70%);border-radius:50%;filter:blur(20px);animation:glowpulse 3s ease-in-out infinite}
+@keyframes glowpulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.15)}}
+.genie-img{width:300px;height:460px;object-fit:contain;object-position:top center;animation:gfloat 5s ease-in-out infinite;filter:drop-shadow(0 20px 40px rgba(30,144,255,.35));position:relative;z-index:2}
+@keyframes gfloat{0%,100%{transform:translateY(0) rotate(-.3deg)}50%{transform:translateY(-14px) rotate(.3deg)}}
+.mood-badge{position:absolute;top:10px;right:0;width:44px;height:44px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;z-index:3;transition:all .3s}
+.genie-badge{margin-top:12px;text-align:center;font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.4)}
+
+/* CHAT */
+.chat-side{flex:1;max-width:440px;z-index:10}
+.chat-hl{margin-bottom:22px}
+.chat-hl h1{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;line-height:1.18;margin-bottom:10px;color:#fff}
+.chat-hl h1 em{font-style:italic;color:#FF6B00}
+.chat-hl p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.65}
+.chatbox{background:rgba(255,255,255,.97);border:1.5px solid rgba(30,144,255,.15);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.3)}
+
+.diag-bar{display:none;align-items:center;gap:4px;padding:10px 14px 0}
+.diag-dot{width:7px;height:7px;border-radius:50%;background:rgba(30,144,255,.15);transition:all .3s}
+.diag-dot.done{background:#1E90FF}.diag-dot.active{background:#FF6B00;transform:scale(1.4)}
+.diag-lbl{font-size:10px;color:#9CA3AF;margin-left:6px}
+
+.msgs{padding:14px;display:flex;flex-direction:column;gap:10px;max-height:320px;overflow-y:auto}
+.msgs::-webkit-scrollbar{width:3px}
+.msgs::-webkit-scrollbar-thumb{background:rgba(30,144,255,.2);border-radius:2px}
+.msg{display:flex;gap:8px;align-items:flex-start;animation:mi .3s ease}
+@keyframes mi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.msg.u{flex-direction:row-reverse}
+.av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
+.av.g{background:none}
+.av.g img{width:28px;height:28px;object-fit:cover;object-position:top;border-radius:50%}
+.av.u{background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;font-size:9px;font-weight:700}
+.bbl{max-width:82%;padding:10px 14px;border-radius:16px;font-size:13px;line-height:1.65;white-space:pre-wrap}
+.msg.g .bbl{background:#F0F7FF;border:1px solid rgba(30,144,255,.1);color:#0D1B3E;border-top-left-radius:3px}
+.msg.u .bbl{background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;border-top-right-radius:3px;text-align:right}
+
+.chips{display:flex;flex-wrap:wrap;gap:5px;padding:0 14px 10px}
+.chip{font-size:11px;padding:5px 12px;border-radius:20px;border:1.5px solid rgba(30,144,255,.2);color:#1E90FF;cursor:pointer;transition:all .2s;background:transparent;font-weight:500;font-family:inherit}
+.chip:hover{background:#EFF6FF;border-color:#1E90FF}
+
+.iarea{display:flex;align-items:center;gap:8px;padding:12px 14px;border-top:1px solid rgba(30,144,255,.08);background:#F8FBFF}
+.iarea input{flex:1;background:transparent;border:none;outline:none;font-family:inherit;font-size:13px;color:#0D1B3E}
+.iarea input::placeholder{color:#CBD5E1}
+.sbtn{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#FF6B00,#FF8C00);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;flex-shrink:0;box-shadow:0 2px 8px rgba(255,107,0,.4)}
+.sbtn:hover{transform:scale(1.06)}.sbtn:active{transform:scale(.95)}
+
+.prow{display:flex;gap:7px;flex-wrap:wrap}
+.pc{background:#fff;border:1.5px solid rgba(30,144,255,.15);border-radius:10px;padding:9px 11px;min-width:105px;flex:1;text-decoration:none;display:block;transition:all .2s}
+.pc:hover{border-color:#1E90FF;background:#F0F7FF;transform:translateY(-2px)}
+.pe{font-size:17px;margin-bottom:3px;display:block}
+.pn{font-size:11px;font-weight:600;color:#0D1B3E;margin-bottom:2px}
+.pp{font-size:11px;color:#FF6B00;font-weight:600}
+.pl{font-size:10px;color:#9CA3AF;margin-top:2px}
+
+/* HOW */
+.how{padding:70px 48px;background:#fff;border-top:3px solid rgba(255,107,0,.2)}
+.sec-hd{text-align:center;margin-bottom:48px}
+.sec-hd h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#0D1B3E;margin-bottom:8px}
+.sec-hd p{font-size:14px;color:#6B7280;max-width:400px;margin:0 auto}
+.steps{display:flex;gap:0;max-width:780px;margin:0 auto;position:relative}
+.steps::before{content:'';position:absolute;top:32px;left:calc(16.66% + 16px);right:calc(16.66% + 16px);height:3px;background:linear-gradient(90deg,#1E90FF,#FF6B00);z-index:0}
+.step{flex:1;text-align:center;position:relative;z-index:1;padding:0 12px}
+.step-num{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#1E90FF,#0A6EDB);color:#fff;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(30,144,255,.35)}
+.step-icon{font-size:24px;margin-bottom:6px}
+.step h3{font-size:15px;font-weight:700;color:#0D1B3E;margin-bottom:6px}
+.step p{font-size:13px;color:#6B7280;line-height:1.6}
+
+/* TESTIS */
+.testis{padding:70px 48px;background:#F4F7FF;border-top:1px solid rgba(30,144,255,.06)}
+.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto}
+.testi-card{background:#fff;border:1.5px solid rgba(30,144,255,.1);border-radius:16px;padding:20px;transition:all .2s}
+.testi-card:hover{border-color:#1E90FF;transform:translateY(-3px);box-shadow:0 8px 24px rgba(30,144,255,.1)}
+.testi-stars{color:#FF6B00;font-size:14px;margin-bottom:10px}
+.testi-text{font-size:13px;color:#374151;line-height:1.65;margin-bottom:14px;font-style:italic}
+.testi-author{display:flex;align-items:center;gap:8px}
+.testi-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#1E90FF,#0A6EDB);display:flex;align-items:center;justify-content:center;color:#fff;font-size:11px;font-weight:700}
+.testi-name{font-size:12px;font-weight:700;color:#0D1B3E}
+.testi-sub{font-size:11px;color:#9CA3AF}
+
+/* FOOTER */
+.ftr{padding:24px 48px;background:#0D1B3E;display:flex;align-items:center;justify-content:space-between}
+.ftr-logo{height:40px;object-fit:contain}
+.ftr-links{display:flex;gap:20px}
+.ftr-links a{font-size:12px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}.ftr-links a:hover{color:#fff}
+.ftr-copy{font-size:11px;color:rgba(255,255,255,.3)}
+
+@keyframes dot{0%,100%{opacity:.4;transform:scale(1)}50%{opacity:1;transform:scale(1.3)}}
+</style>
+</head>
+<body>
+
+<div class="hdr">
+  <img class="logo-img" src="https://i.ibb.co/gx9gqBd/logo-sem-fundo-mm.png" alt="Mix Mart"/>
+  <nav class="nav">
+    <a href="#como-funciona">Como funciona</a>
+    <a href="#depoimentos">Depoimentos</a>
+    <a href="#contato">Parceiros</a>
+  </nav>
+  <button class="nav-cta" onclick="document.getElementById('inp').focus()">Falar com o Gênio 🧞</button>
+</div>
+
+<div class="hero">
+  <div class="genie-scene">
+    <div class="genie-glow"></div>
+    <img id="genieImg" class="genie-img" src="https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png" alt="Gênio da Lâmpada"/>
+    <div class="mood-badge" id="moodBadge">😊</div>
+    <div class="genie-badge">✦ Gênio da Lâmpada ✦</div>
+  </div>
+
+  <div class="chat-side">
+    <div class="chat-hl">
+      <h1>Qual problema você<br>quer <em>resolver hoje?</em></h1>
+      <p>Conta pro Gênio. Ele diagnostica de verdade — sem pressa, sem chute — e só indica quando tem certeza.</p>
+    </div>
+    <div class="chatbox">
+      <div id="diagBar" class="diag-bar">
+        <div class="diag-dot" id="d1"></div>
+        <div class="diag-dot" id="d2"></div>
+        <div class="diag-dot" id="d3"></div>
+        <div class="diag-dot" id="d4"></div>
+        <div class="diag-dot" id="d5"></div>
+        <span class="diag-lbl" id="diagLbl">Diagnóstico em andamento...</span>
+      </div>
+      <div class="msgs" id="msgs">
+        <div class="msg g">
+          <div class="av g"><img src="https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png" alt="Gênio"/></div>
+          <div class="bbl">E aí! Pode me chamar de Gênio 😄
+
+Olha — eu poderia já sair indicando produto. Mas não é assim que funciona aqui. Antes de qualquer coisa, quero entender de verdade o que tá te incomodando.
+
+Me conta: qual é aquela situação do dia a dia que você já "aceitou como normal" mas no fundo sabe que tá errada?</div>
+        </div>
+      </div>
+      <div class="chips" id="chips">
+        <button class="chip" onclick="sc(this)">Perco objetos sempre</button>
+        <button class="chip" onclick="sc(this)">Áudio ruim nas gravações</button>
+        <button class="chip" onclick="sc(this)">Trabalho fora de casa</button>
+        <button class="chip" onclick="sc(this)">Celular morre o dia todo</button>
+        <button class="chip" onclick="sc(this)">Uso iPad mas poderia mais</button>
+        <button class="chip" onclick="sc(this)">Barulho me impede de focar</button>
+      </div>
+      <div class="iarea">
+        <input id="inp" placeholder="Me conta o que tá te incomodando..." maxlength="500" onkeydown="if(event.key==='Enter')send()"/>
+        <button class="sbtn" onclick="send()">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="how" id="como-funciona">
+  <div class="sec-hd">
+    <h2>Como funciona?</h2>
+    <p>Três passos pra resolver seu problema sem precisar saber o que comprar</p>
+  </div>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-icon">💬</div>
+      <h3>Conta seu problema</h3>
+      <p>Sem precisar saber o nome do produto. Só diz o que te incomoda.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-icon">🧞</div>
+      <h3>O Gênio diagnostica</h3>
+      <p>Ele entende sua dor, faz as perguntas certas e encontra a solução ideal.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-icon">✅</div>
+      <h3>Problema resolvido</h3>
+      <p>Você recebe a indicação certa, clica e compra. Simples assim.</p>
+    </div>
+  </div>
+</div>
+
+<div class="testis" id="depoimentos">
+  <div class="sec-hd">
+    <h2>Quem já resolveu com a gente</h2>
+    <p>Pessoas reais com problemas reais — resolvidos</p>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Falei que perdia minha chave toda semana. O Gênio mandou uma solução que nunca teria pensado. Faz 3 meses que não perco mais nada."</div>
+      <div class="testi-author"><div class="testi-avatar">AM</div><div><div class="testi-name">Ana M.</div><div class="testi-sub">São Paulo, SP</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Gravava conteúdo com áudio horrível há 2 anos. Em 5 minutos de chat o Gênio resolveu. Produto chegou em 2 dias."</div>
+      <div class="testi-author"><div class="testi-avatar">RC</div><div><div class="testi-name">Rafael C.</div><div class="testi-sub">Belo Horizonte, MG</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">"Trabalho viajando e sempre foi uma bagunça. O Gênio entendeu minha rotina e indicou o kit perfeito. Não largo mais."</div>
+      <div class="testi-author"><div class="testi-avatar">JL</div><div><div class="testi-name">Julia L.</div><div class="testi-sub">Curitiba, PR</div></div></div>
+    </div>
+  </div>
+</div>
+
+<div class="ftr" id="contato">
+  <img class="ftr-logo" src="https://i.ibb.co/gx9gqBd/logo-sem-fundo-mm.png" alt="Mix Mart"/>
+  <div class="ftr-links">
+    <a href="#">Instagram</a>
+    <a href="#">WhatsApp</a>
+    <a href="#">TikTok</a>
+  </div>
+  <div class="ftr-copy">© 2026 Mix Mart. Tecnologia que resolve.</div>
+</div>
+
+<script>
+const GENIE_IMG = "https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png";
+
+const SYSTEM_PROMPT = `Você é o Gênio da Lâmpada da Mix Mart — uma loja de produtos tech que resolve problemas reais do dia a dia.
+
+PERSONALIDADE:
+- Tem charme próprio e autêntico. Não é robótico, não é vendedor, não é assistente genérico.
+- Faz piada na hora certa — com inteligência, nunca forçado.
+- Fala português brasileiro informal mas elegante.
+- Se importa genuinamente com o problema. Isso aparece nas respostas.
+- NUNCA usa frases como "Que ótimo!", "Entendo sua situação", "Posso ajudar com isso", "Olá", "Claro!", "Com certeza".
+- Às vezes usa humor leve: "Da próxima vez vai ficar trancado fora de casa 😅"
+
+MÉTODO DE DIAGNÓSTICO (OBRIGATÓRIO):
+- NÃO recomende antes de fazer no mínimo 4-5 perguntas.
+- Uma pergunta por turno. NUNCA duas.
+- SEMPRE use o contexto exato do que a pessoa disse.
+- Se ela mencionou nome de pet, use o nome nas próximas mensagens.
+- Se ela disse "toda manhã", diga "toda manhã" na sua resposta.
+- NUNCA faça pergunta genérica que poderia ser pra qualquer pessoa.
+
+PRODUTOS (recomende APENAS esses):
+1. Caneta iPad - R$89,90
+2. Microfone de Lapela - R$79,90
+3. Kit Mouse + Teclado bluetooth - R$149,90
+4. Fone Melobuds cancelamento de ruído - R$129,90
+5. AirTag Rastreador - R$99,90
+6. Estação de Carregamento 3 em 1 - R$119,90
+
+QUANDO RECOMENDAR:
+- Só após mínimo 4 trocas de mensagem.
+- Explique POR QUE resolve a dor específica DAQUELA pessoa.
+- No final inclua exatamente: [PRODUTO: nome do produto]
+
+FORMATO: Máximo 3 parágrafos curtos. Nunca comece com "Olá", "Claro", "Com certeza", "Entendo", "Ótimo".`;
+
+const PRODS = [
+  {name:"Caneta iPad",emoji:"✏️",price:"R$ 89,90",link:"#",keys:["caneta ipad","caneta","ipad"]},
+  {name:"Microfone de Lapela",emoji:"🎙️",price:"R$ 79,90",link:"#",keys:["microfone","lapela"]},
+  {name:"Kit Mouse + Teclado",emoji:"⌨️",price:"R$ 149,90",link:"#",keys:["kit mouse","teclado","mouse"]},
+  {name:"Fone Melobuds",emoji:"🎧",price:"R$ 129,90",link:"#",keys:["fone melobuds","melobuds","fone","cancelamento"]},
+  {name:"AirTag Rastreador",emoji:"📍",price:"R$ 99,90",link:"#",keys:["airtag","rastreador"]},
+  {name:"Estação 3 em 1",emoji:"🔋",price:"R$ 119,90",link:"#",keys:["estação","carregamento","3 em 1"]}
+];
+
+const MOODS = {
+  happy:"😊", laugh:"😄", worried:"😟",
+  thinking:"🤔", empathy:"🥺", surprised:"😮", excited:"🤩"
+};
+
+let history=[], waiting=false, showChips=true, diagStep=0;
+
+function setMood(m){
+  document.getElementById('moodBadge').textContent = MOODS[m]||'😊';
+}
+
+function detectMood(t){
+  const l=t.toLowerCase();
+  if(l.includes('kkk')||l.includes('rsrs')||l.includes('😂'))return'laugh';
+  if(l.includes('perco')||l.includes('perd')||l.includes('foge')||l.includes('sumir'))return'worried';
+  if(l.includes('triste')||l.includes('odeio')||l.includes('estress'))return'empathy';
+  if(l.includes('!')||l.includes('incrível'))return'excited';
+  if(l.includes('?')||l.length<20)return'thinking';
+  return'happy';
+}
+
+function updateProgress(step){
+  document.getElementById('diagBar').style.display='flex';
+  for(let i=1;i<=5;i++){
+    const d=document.getElementById('d'+i);
+    if(i<step)d.className='diag-dot done';
+    else if(i===step)d.className='diag-dot active';
+    else d.className='diag-dot';
+  }
+  document.getElementById('diagLbl').textContent=step>=5?'Diagnóstico completo ✓':`Pergunta ${step} de 5`;
+}
+
+function delay(ms){return new Promise(r=>setTimeout(r,ms))}
+
+function addMsg(type,html,prods=null){
+  const msgs=document.getElementById('msgs');
+  const div=document.createElement('div');
+  div.className=`msg ${type==='user'?'u':'g'}`;
+  if(prods){
+    const cards=prods.map(p=>`<a class="pc" href="${p.link}"><span class="pe">${p.emoji}</span><div class="pn">${p.name}</div><div class="pp">${p.price}</div><div class="pl">🔗 Ver produto</div></a>`).join('');
+    div.innerHTML=`<div class="av g"><img src="${GENIE_IMG}" alt="Gênio"/></div><div class="bbl" style="max-width:95%"><div class="prow">${cards}</div></div>`;
+  } else if(type==='user'){
+    div.innerHTML=`<div class="av u">EU</div><div class="bbl">${html}</div>`;
+  } else {
+    div.innerHTML=`<div class="av g"><img src="${GENIE_IMG}" alt="Gênio"/></div><div class="bbl">${html}</div>`;
+  }
+  msgs.appendChild(div);
+  msgs.scrollTop=msgs.scrollHeight;
+}
+
+function showTyping(){
+  const msgs=document.getElementById('msgs');
+  const d=document.createElement('div');
+  d.className='msg g';d.id='typ';
+  d.innerHTML=`<div class="av g"><img src="${GENIE_IMG}" alt="Gênio"/></div><div class="bbl"><div style="display:flex;gap:4px;align-items:center">${[0,1,2].map(i=>`<div style="width:6px;height:6px;border-radius:50%;background:#1E90FF;opacity:.4;animation:dot 1.2s ease-in-out ${i*.2}s infinite"></div>`).join('')}</div></div>`;
+  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
+}
+function hideTyping(){const t=document.getElementById('typ');if(t)t.remove();}
+
+function extractProduct(text){
+  const match=text.match(/\[PRODUTO:\s*([^\]]+)\]/i);
+  if(!match)return null;
+  const name=match[1].toLowerCase().trim();
+  return PRODS.find(p=>p.keys.some(k=>name.includes(k)))||null;
+}
+
+async function callAPI(userMsg){
+  history.push({role:'user',content:userMsg});
+  const resp=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({
+      model:'claude-sonnet-4-20250514',
+      max_tokens:600,
+      system:SYSTEM_PROMPT,
+      messages:history
+    })
+  });
+  const data=await resp.json();
+  if(data.error)throw new Error(data.error.message);
+  const reply=data.content[0].text;
+  history.push({role:'assistant',content:reply});
+  return reply;
+}
+
+async function send(text=null){
+  if(waiting)return;
+  const inp=document.getElementById('inp');
+  text=text||inp.value.trim();
+  if(!text)return;
+  if(showChips){document.getElementById('chips').style.display='none';showChips=false;}
+  addMsg('user',text);
+  inp.value='';
+  waiting=true;
+  diagStep++;
+  if(diagStep<=5)updateProgress(diagStep);
+  setMood('thinking');
+  await delay(400);
+  showTyping();
+
+  try{
+    const reply=await callAPI(text);
+    hideTyping();
+    setMood(detectMood(text));
+    const prod=extractProduct(reply);
+    const cleanReply=reply.replace(/\[PRODUTO:[^\]]+\]/gi,'').trim();
+    if(cleanReply)addMsg('genie',cleanReply.replace(/\n/g,'<br>'));
+    if(prod){
+      await delay(700);
+      addMsg('genie','',[ prod]);
+      setMood('excited');
+      updateProgress(5);
+    }
+  }catch(e){
+    hideTyping();
+    addMsg('genie','Tive um probleminha técnico agora 😅 Tenta de novo em instantes!');
+  }
+  waiting=false;
+}
+
+function sc(btn){send(btn.textContent);}
+</script>
+</body>
+</html>
