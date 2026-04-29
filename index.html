@@ -420,19 +420,14 @@ function extractProduct(text){
 
 async function callAPI(userMsg){
   history.push({role:'user',content:userMsg});
-  const resp=await fetch('https://api.anthropic.com/v1/messages',{
+  const resp=await fetch('https://mixmart-genio.mixmartimports.workers.dev',{
     method:'POST',
     headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({
-      model:'claude-sonnet-4-20250514',
-      max_tokens:600,
-      system:SYSTEM_PROMPT,
-      messages:history
-    })
+    body:JSON.stringify({messages:history})
   });
   const data=await resp.json();
-  if(data.error)throw new Error(data.error.message);
-  const reply=data.content[0].text;
+  if(data.error)throw new Error(data.error);
+  const reply=data.reply;
   history.push({role:'assistant',content:reply});
   return reply;
 }
