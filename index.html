@@ -10,25 +10,36 @@
 :root{--blue:#1E90FF;--orange:#FF6B00;--navy:#0D1B3E;--navy2:#152347}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--navy);overflow-x:hidden}
 
-/* HEADER */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 48px;background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(13,27,62,.4)}
 .logo-img{height:52px;object-fit:contain}
-.nav{display:flex;gap:28px;font-size:13px;font-weight:500;color:rgba(255,255,255,.6)}
+.nav{display:flex;gap:28px;font-size:13px;font-weight:500;}
 .nav a{cursor:pointer;transition:color .2s;text-decoration:none;color:rgba(255,255,255,.6)}.nav a:hover{color:#fff}
 .nav-cta{padding:9px 20px;background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;border:none;box-shadow:0 4px 14px rgba(255,107,0,.4);transition:all .2s}.nav-cta:hover{transform:translateY(-1px)}
 
-/* HERO */
 .hero{display:flex;align-items:center;justify-content:center;min-height:90vh;padding:40px 48px;gap:60px;background:linear-gradient(135deg,#0D1B3E 0%,#152347 60%,#0D2560 100%);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(30,144,255,.12),transparent 70%);border-radius:50%;pointer-events:none}
 .hero::after{content:'';position:absolute;bottom:-80px;left:0;width:400px;height:400px;background:radial-gradient(circle,rgba(255,107,0,.06),transparent 70%);border-radius:50%;pointer-events:none}
 
 /* GENIE */
 .genie-scene{flex:0 0 auto;position:relative;display:flex;flex-direction:column;align-items:center;width:320px}
-.genie-glow{position:absolute;bottom:80px;left:50%;transform:translateX(-50%);width:220px;height:220px;background:radial-gradient(circle,rgba(30,144,255,.2),transparent 70%);border-radius:50%;filter:blur(20px);animation:glowpulse 3s ease-in-out infinite}
-@keyframes glowpulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.15)}}
-.genie-img{width:300px;height:460px;object-fit:contain;object-position:top center;animation:gfloat 5s ease-in-out infinite;filter:drop-shadow(0 20px 40px rgba(30,144,255,.35));position:relative;z-index:2}
+.genie-glow{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);width:240px;height:240px;background:radial-gradient(circle,rgba(30,144,255,.25),transparent 70%);border-radius:50%;filter:blur(22px);animation:glowpulse 3s ease-in-out infinite;z-index:0}
+@keyframes glowpulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.12)}}
+
+.genie-img-container{position:relative;width:300px;height:460px;z-index:2}
+.genie-img{
+  position:absolute;top:0;left:0;
+  width:300px;height:460px;
+  object-fit:contain;object-position:top center;
+  animation:gfloat 5s ease-in-out infinite;
+  filter:drop-shadow(0 20px 50px rgba(30,144,255,.4)) brightness(1.05) contrast(1.05) saturate(1.1);
+  transition:opacity .4s ease;
+  image-rendering:-webkit-optimize-contrast;
+  image-rendering:crisp-edges;
+}
+.genie-img.hidden{opacity:0}
+.genie-img.visible{opacity:1}
+
 @keyframes gfloat{0%,100%{transform:translateY(0) rotate(-.3deg)}50%{transform:translateY(-14px) rotate(.3deg)}}
-.mood-badge{position:absolute;top:10px;right:0;width:44px;height:44px;background:rgba(255,255,255,.15);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:22px;z-index:3;transition:all .3s}
 .genie-badge{margin-top:12px;text-align:center;font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.4)}
 
 /* CHAT */
@@ -51,7 +62,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
 @keyframes mi{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
 .msg.u{flex-direction:row-reverse}
 .av{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden}
-.av.g{background:none}
 .av.g img{width:28px;height:28px;object-fit:cover;object-position:top;border-radius:50%}
 .av.u{background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;font-size:9px;font-weight:700}
 .bbl{max-width:82%;padding:10px 14px;border-radius:16px;font-size:13px;line-height:1.65;white-space:pre-wrap}
@@ -76,12 +86,11 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
 .pp{font-size:11px;color:#FF6B00;font-weight:600}
 .pl{font-size:10px;color:#9CA3AF;margin-top:2px}
 
-/* HOW */
 .how{padding:70px 48px;background:#fff;border-top:3px solid rgba(255,107,0,.2)}
 .sec-hd{text-align:center;margin-bottom:48px}
 .sec-hd h2{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:#0D1B3E;margin-bottom:8px}
 .sec-hd p{font-size:14px;color:#6B7280;max-width:400px;margin:0 auto}
-.steps{display:flex;gap:0;max-width:780px;margin:0 auto;position:relative}
+.steps{display:flex;max-width:780px;margin:0 auto;position:relative}
 .steps::before{content:'';position:absolute;top:32px;left:calc(16.66% + 16px);right:calc(16.66% + 16px);height:3px;background:linear-gradient(90deg,#1E90FF,#FF6B00);z-index:0}
 .step{flex:1;text-align:center;position:relative;z-index:1;padding:0 12px}
 .step-num{width:64px;height:64px;border-radius:50%;background:linear-gradient(135deg,#1E90FF,#0A6EDB);color:#fff;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;box-shadow:0 4px 16px rgba(30,144,255,.35)}
@@ -89,7 +98,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
 .step h3{font-size:15px;font-weight:700;color:#0D1B3E;margin-bottom:6px}
 .step p{font-size:13px;color:#6B7280;line-height:1.6}
 
-/* TESTIS */
 .testis{padding:70px 48px;background:#F4F7FF;border-top:1px solid rgba(30,144,255,.06)}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto}
 .testi-card{background:#fff;border:1.5px solid rgba(30,144,255,.1);border-radius:16px;padding:20px;transition:all .2s}
@@ -101,7 +109,6 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
 .testi-name{font-size:12px;font-weight:700;color:#0D1B3E}
 .testi-sub{font-size:11px;color:#9CA3AF}
 
-/* FOOTER */
 .ftr{padding:24px 48px;background:#0D1B3E;display:flex;align-items:center;justify-content:space-between}
 .ftr-logo{height:40px;object-fit:contain}
 .ftr-links{display:flex;gap:20px}
@@ -126,8 +133,16 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
 <div class="hero">
   <div class="genie-scene">
     <div class="genie-glow"></div>
-    <img id="genieImg" class="genie-img" src="https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png" alt="Gênio da Lâmpada"/>
-    <div class="mood-badge" id="moodBadge">😊</div>
+    <div class="genie-img-container">
+      <!-- happy = default (braços abertos) -->
+      <img id="g-happy"   class="genie-img visible" src="https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png" alt="Gênio feliz"/>
+      <!-- thinking = pensativo (mão no rosto) -->
+      <img id="g-thinking" class="genie-img hidden" src="https://i.ibb.co/XrM3j1y7/Chat-GPT-Image-29-de-abr-de-2026-12-16-45-removebg-preview.png" alt="Gênio pensando"/>
+      <!-- shocked = chocado (mãos na cabeça) -->
+      <img id="g-shocked"  class="genie-img hidden" src="https://i.ibb.co/Xk4R0tDh/Chat-GPT-Image-29-de-abr-de-2026-12-19-55-removebg-preview.png" alt="Gênio chocado"/>
+      <!-- excited = comemorando (punhos levantados) -->
+      <img id="g-excited"  class="genie-img hidden" src="https://i.ibb.co/pj1YhdX2/Chat-GPT-Image-29-de-abr-de-2026-12-23-55-removebg-preview.png" alt="Gênio animado"/>
+    </div>
     <div class="genie-badge">✦ Gênio da Lâmpada ✦</div>
   </div>
 
@@ -227,46 +242,104 @@ Me conta: qual é aquela situação do dia a dia que você já "aceitou como nor
 <div class="ftr" id="contato">
   <img class="ftr-logo" src="https://i.ibb.co/gx9gqBd/logo-sem-fundo-mm.png" alt="Mix Mart"/>
   <div class="ftr-links">
-    <a href="#">Instagram</a>
-    <a href="#">WhatsApp</a>
-    <a href="#">TikTok</a>
+    <a href="https://instagram.com/mixmart_oficial" target="_blank">Instagram</a>
+    <a href="https://wa.me/55" target="_blank">WhatsApp</a>
+    <a href="https://tiktok.com/@mixmartimports" target="_blank">TikTok</a>
   </div>
   <div class="ftr-copy">© 2026 Mix Mart. Tecnologia que resolve.</div>
 </div>
 
 <script>
-const GENIE_IMG = "https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png";
+// ===== IMAGENS DO GÊNIO POR EXPRESSÃO =====
+const GENIE_IMGS = {
+  happy:    'https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png',
+  thinking: 'https://i.ibb.co/XrM3j1y7/Chat-GPT-Image-29-de-abr-de-2026-12-16-45-removebg-preview.png',
+  shocked:  'https://i.ibb.co/Xk4R0tDh/Chat-GPT-Image-29-de-abr-de-2026-12-19-55-removebg-preview.png',
+  excited:  'https://i.ibb.co/pj1YhdX2/Chat-GPT-Image-29-de-abr-de-2026-12-23-55-removebg-preview.png',
+};
 
+let currentMood = 'happy';
+
+function setGenie(mood) {
+  if (mood === currentMood) return;
+  const prev = document.getElementById('g-' + currentMood);
+  const next = document.getElementById('g-' + mood);
+  if (!next) return;
+  prev.classList.remove('visible'); prev.classList.add('hidden');
+  next.classList.remove('hidden'); next.classList.add('visible');
+  currentMood = mood;
+}
+
+// Detecta expressão baseada no CONTEÚDO da resposta do Gênio (não do usuário)
+function detectGenieExpression(text) {
+  const l = text.toLowerCase();
+  // Comemorando — quando recomenda produto ou está muito animado
+  if (l.includes('perfeito') || l.includes('encontrei') || l.includes('solução') ||
+      l.includes('resolve') || l.includes('exatamente') || l.includes('diagnóstico') ||
+      l.includes('olha só') || l.includes('olha isso') || l.includes('👇') ||
+      l.includes('🎉') || l.includes('🔥')) return 'excited';
+  // Chocado — quando lead descreve algo absurdo ou urgente
+  if (l.includes('sério?') || l.includes('nossa') || l.includes('meu deus') ||
+      l.includes('que situação') || l.includes('isso é grave') ||
+      l.includes('toda manhã') || l.includes('todo dia') ||
+      l.includes('😱') || l.includes('😨')) return 'shocked';
+  // Pensativo — quando está fazendo perguntas de diagnóstico
+  if (l.includes('me conta') || l.includes('me fala') || l.includes('qual é') ||
+      l.includes('você usa') || l.includes('acontece') || l.includes('como você') ||
+      l.includes('pergunto') || l.includes('preciso entender') ||
+      l.includes('🤔') || l.includes('hmm')) return 'thinking';
+  return 'happy';
+}
+
+// Detecta expressão baseada no que o LEAD escreve
+function detectUserMood(text) {
+  const l = text.toLowerCase();
+  // Chocado — quando lead descreve situação grave/urgente
+  if (l.includes('toda manhã') || l.includes('todo dia') || l.includes('sempre') ||
+      l.includes('foge') || l.includes('some') || l.includes('cadê') ||
+      l.includes('perco tudo') || l.includes('impossível') ||
+      l.includes('odeio') || l.includes('não aguento')) return 'shocked';
+  // Animado — quando lead está empolgado
+  if (l.includes('!') && (l.includes('ótim') || l.includes('perfeito') ||
+      l.includes('quero') || l.includes('gostei') || l.includes('incrível'))) return 'excited';
+  // Pensativo — mensagens curtas ou com dúvida
+  if (l.includes('?') || l.length < 25) return 'thinking';
+  return 'happy';
+}
+
+// ===== SYSTEM PROMPT =====
 const SYSTEM_PROMPT = `Você é o Gênio da Lâmpada da Mix Mart — uma loja de produtos tech que resolve problemas reais do dia a dia.
 
 PERSONALIDADE:
 - Tem charme próprio e autêntico. Não é robótico, não é vendedor, não é assistente genérico.
-- Faz piada na hora certa — com inteligência, nunca forçado.
+- Faz piada na hora certa — com inteligência e bom senso, nunca forçado.
 - Fala português brasileiro informal mas elegante.
 - Se importa genuinamente com o problema. Isso aparece nas respostas.
 - NUNCA usa frases como "Que ótimo!", "Entendo sua situação", "Posso ajudar com isso", "Olá", "Claro!", "Com certeza".
-- Às vezes usa humor leve: "Da próxima vez vai ficar trancado fora de casa 😅"
+- Tem senso de humor natural: se a pessoa falar algo engraçado ou absurdo, reage com humor genuíno.
+- Se a situação for séria ou urgente, reage com seriedade e empatia real.
 
-MÉTODO DE DIAGNÓSTICO (OBRIGATÓRIO):
-- NÃO recomende antes de fazer no mínimo 4-5 perguntas.
-- Uma pergunta por turno. NUNCA duas.
-- SEMPRE use o contexto exato do que a pessoa disse.
+MÉTODO DE DIAGNÓSTICO (OBRIGATÓRIO — COMO UM MÉDICO):
+- NÃO recomende antes de fazer no mínimo 4-5 perguntas específicas.
+- Uma pergunta por turno. NUNCA duas no mesmo turno.
+- SEMPRE use o contexto exato do que a pessoa disse — referencie palavras, nomes, situações específicas.
 - Se ela mencionou nome de pet, use o nome nas próximas mensagens.
 - Se ela disse "toda manhã", diga "toda manhã" na sua resposta.
+- Se ela deu detalhe específico, mostre que você ouviu esse detalhe.
 - NUNCA faça pergunta genérica que poderia ser pra qualquer pessoa.
 
 PRODUTOS (recomende APENAS esses):
-1. Caneta iPad - R$89,90
-2. Microfone de Lapela - R$79,90
-3. Kit Mouse + Teclado bluetooth - R$149,90
-4. Fone Melobuds cancelamento de ruído - R$129,90
-5. AirTag Rastreador - R$99,90
-6. Estação de Carregamento 3 em 1 - R$119,90
+1. Caneta iPad - R$89,90 — pra quem usa iPad e quer escrever/desenhar com precisão
+2. Microfone de Lapela - R$79,90 — pra quem grava conteúdo e quer áudio limpo
+3. Kit Mouse + Teclado bluetooth c/ bolsinha - R$149,90 — pra quem trabalha fora
+4. Fone Melobuds c/ cancelamento de ruído - R$129,90 — pra quem precisa focar
+5. AirTag Rastreador - R$99,90 — pra quem perde objetos ou quer rastrear pet
+6. Estação de Carregamento 3 em 1 - R$119,90 — pra quem tem celular+fone+smartwatch
 
 QUANDO RECOMENDAR:
-- Só após mínimo 4 trocas de mensagem.
-- Explique POR QUE resolve a dor específica DAQUELA pessoa.
-- No final inclua exatamente: [PRODUTO: nome do produto]
+- Só após mínimo 4 trocas de mensagem e diagnóstico completo.
+- Explique POR QUE resolve a dor específica DAQUELA pessoa com os detalhes que ela deu.
+- Termine com exatamente: [PRODUTO: nome exato do produto]
 
 FORMATO: Máximo 3 parágrafos curtos. Nunca comece com "Olá", "Claro", "Com certeza", "Entendo", "Ótimo".`;
 
@@ -279,26 +352,7 @@ const PRODS = [
   {name:"Estação 3 em 1",emoji:"🔋",price:"R$ 119,90",link:"#",keys:["estação","carregamento","3 em 1"]}
 ];
 
-const MOODS = {
-  happy:"😊", laugh:"😄", worried:"😟",
-  thinking:"🤔", empathy:"🥺", surprised:"😮", excited:"🤩"
-};
-
 let history=[], waiting=false, showChips=true, diagStep=0;
-
-function setMood(m){
-  document.getElementById('moodBadge').textContent = MOODS[m]||'😊';
-}
-
-function detectMood(t){
-  const l=t.toLowerCase();
-  if(l.includes('kkk')||l.includes('rsrs')||l.includes('😂'))return'laugh';
-  if(l.includes('perco')||l.includes('perd')||l.includes('foge')||l.includes('sumir'))return'worried';
-  if(l.includes('triste')||l.includes('odeio')||l.includes('estress'))return'empathy';
-  if(l.includes('!')||l.includes('incrível'))return'excited';
-  if(l.includes('?')||l.length<20)return'thinking';
-  return'happy';
-}
 
 function updateProgress(step){
   document.getElementById('diagBar').style.display='flex';
@@ -313,17 +367,22 @@ function updateProgress(step){
 
 function delay(ms){return new Promise(r=>setTimeout(r,ms))}
 
-function addMsg(type,html,prods=null){
+function getAvatarImg(mood='happy'){
+  return GENIE_IMGS[mood] || GENIE_IMGS.happy;
+}
+
+function addMsg(type, html, prods=null, mood='happy'){
   const msgs=document.getElementById('msgs');
   const div=document.createElement('div');
   div.className=`msg ${type==='user'?'u':'g'}`;
+  const avatarSrc = getAvatarImg(mood);
   if(prods){
     const cards=prods.map(p=>`<a class="pc" href="${p.link}"><span class="pe">${p.emoji}</span><div class="pn">${p.name}</div><div class="pp">${p.price}</div><div class="pl">🔗 Ver produto</div></a>`).join('');
-    div.innerHTML=`<div class="av g"><img src="${GENIE_IMG}" alt="Gênio"/></div><div class="bbl" style="max-width:95%"><div class="prow">${cards}</div></div>`;
+    div.innerHTML=`<div class="av g"><img src="${avatarSrc}" alt="Gênio"/></div><div class="bbl" style="max-width:95%"><div class="prow">${cards}</div></div>`;
   } else if(type==='user'){
     div.innerHTML=`<div class="av u">EU</div><div class="bbl">${html}</div>`;
   } else {
-    div.innerHTML=`<div class="av g"><img src="${GENIE_IMG}" alt="Gênio"/></div><div class="bbl">${html}</div>`;
+    div.innerHTML=`<div class="av g"><img src="${avatarSrc}" alt="Gênio"/></div><div class="bbl">${html}</div>`;
   }
   msgs.appendChild(div);
   msgs.scrollTop=msgs.scrollHeight;
@@ -333,7 +392,7 @@ function showTyping(){
   const msgs=document.getElementById('msgs');
   const d=document.createElement('div');
   d.className='msg g';d.id='typ';
-  d.innerHTML=`<div class="av g"><img src="${GENIE_IMG}" alt="Gênio"/></div><div class="bbl"><div style="display:flex;gap:4px;align-items:center">${[0,1,2].map(i=>`<div style="width:6px;height:6px;border-radius:50%;background:#1E90FF;opacity:.4;animation:dot 1.2s ease-in-out ${i*.2}s infinite"></div>`).join('')}</div></div>`;
+  d.innerHTML=`<div class="av g"><img src="${GENIE_IMGS.thinking}" alt="Gênio"/></div><div class="bbl"><div style="display:flex;gap:4px;align-items:center">${[0,1,2].map(i=>`<div style="width:6px;height:6px;border-radius:50%;background:#1E90FF;opacity:.4;animation:dot 1.2s ease-in-out ${i*.2}s infinite"></div>`).join('')}</div></div>`;
   msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
 }
 function hideTyping(){const t=document.getElementById('typ');if(t)t.remove();}
@@ -375,26 +434,36 @@ async function send(text=null){
   waiting=true;
   diagStep++;
   if(diagStep<=5)updateProgress(diagStep);
-  setMood('thinking');
-  await delay(400);
+
+  // Gênio reage ao que o lead escreveu enquanto "pensa"
+  const userMood = detectUserMood(text);
+  setGenie(userMood);
+  await delay(300);
+  setGenie('thinking'); // volta pra pensativo enquanto digita
   showTyping();
+  await delay(1200 + Math.random()*800);
+  hideTyping();
 
   try{
     const reply=await callAPI(text);
-    hideTyping();
-    setMood(detectMood(text));
+    // Detecta a expressão certa baseada na resposta do Gênio
+    const genieMood = detectGenieExpression(reply);
+    setGenie(genieMood);
+
     const prod=extractProduct(reply);
     const cleanReply=reply.replace(/\[PRODUTO:[^\]]+\]/gi,'').trim();
-    if(cleanReply)addMsg('genie',cleanReply.replace(/\n/g,'<br>'));
+    if(cleanReply) addMsg('genie', cleanReply.replace(/\n/g,'<br>'), null, genieMood);
+
     if(prod){
       await delay(700);
-      addMsg('genie','',[ prod]);
-      setMood('excited');
+      setGenie('excited');
+      addMsg('genie', '', [prod], 'excited');
       updateProgress(5);
     }
   }catch(e){
     hideTyping();
-    addMsg('genie','Tive um probleminha técnico agora 😅 Tenta de novo em instantes!');
+    setGenie('shocked');
+    addMsg('genie','Tive um probleminha técnico agora 😅 Tenta de novo em instantes!', null, 'shocked');
   }
   waiting=false;
 }
