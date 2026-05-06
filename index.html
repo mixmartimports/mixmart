@@ -452,16 +452,16 @@ async function callAPI(userMsg){
   return reply;
 }
 
-function addBuyBtn(link){
+function addBuyBtn(link, nome){
   const msgs = document.getElementById('msgs');
   const div = document.createElement('div');
   div.className = 'msg g';
   div.innerHTML = `<div class="av g"><img src="https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png" alt="Gênio"/></div>
-    <div class="bbl" style="max-width:95%;background:#fff;border:1.5px solid rgba(30,144,255,.15);border-radius:16px;padding:12px">
-      <a href="${link}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;text-decoration:none;border-radius:12px;font-size:15px;font-weight:700;box-shadow:0 4px 14px rgba(255,107,0,.4)">
-        🛒 Quero esse produto!
+    <div class="bbl" style="max-width:95%;background:#fff;border:1.5px solid rgba(255,107,0,.25);border-radius:16px;padding:12px">
+      <a href="${link}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;text-decoration:none;border-radius:12px;font-size:14px;font-weight:700;box-shadow:0 4px 14px rgba(255,107,0,.4)">
+        🛒 ${nome ? nome : 'Ver produto'}
       </a>
-      <p style="font-size:11px;color:#9CA3AF;text-align:center;margin-top:8px">Clique para ver o produto</p>
+      <p style="font-size:11px;color:#9CA3AF;text-align:center;margin-top:8px">Toque para ir direto ao produto</p>
     </div>`;
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
