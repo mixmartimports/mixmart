@@ -3,35 +3,50 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Mix Mart — Tecnologia que resolve</title>
+<title>Mix Mart — O Gênio que resolve seu problema com o produto certo</title>
+<meta name="description" content="Descreva seu problema e o Gênio da Lâmpada indica o produto tech perfeito pra você. Diagnóstico real, sem chute, sem enrolação."/>
+<meta property="og:title" content="Mix Mart — O Gênio que resolve seu problema"/>
+<meta property="og:description" content="Fala pro Gênio o que tá te incomodando. Ele diagnostica e indica o produto certo em minutos."/>
+<meta property="og:image" content="https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png"/>
+<meta property="og:type" content="website"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3C!-- chama --%3E%3Cellipse cx='32' cy='18' rx='5' ry='8' fill='%23FF6B00'/%3E%3Cellipse cx='32' cy='17' rx='3' ry='5' fill='%23FFD700'/%3E%3C!-- corpo da lampada --%3E%3Cpath d='M8 38 Q6 28 18 26 Q22 22 32 22 Q42 22 46 26 Q58 28 56 38 Q54 46 44 48 L20 48 Q10 46 8 38Z' fill='%23FFB800'/%3E%3C!-- brilho --%3E%3Cellipse cx='24' cy='33' rx='6' ry='4' fill='rgba(255,255,255,0.25)' transform='rotate(-25 24 33)'/%3E%3C!-- bico/bico --%3E%3Cpath d='M8 38 Q2 36 2 30 Q2 24 8 24 Q10 30 10 36Z' fill='%23E6A000'/%3E%3C!-- alca --%3E%3Cpath d='M56 28 Q66 28 66 36 Q66 44 56 44' stroke='%23E6A000' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C!-- base --%3E%3Crect x='20' y='48' width='24' height='4' rx='2' fill='%23E6A000'/%3E%3Crect x='24' y='52' width='16' height='3' rx='1.5' fill='%23CC8800'/%3E%3C/svg%3E"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;0,900;1,700&display=swap" rel="stylesheet"/>
 <style>
 *{box-sizing:border-box;margin:0;padding:0}
 :root{--blue:#1E90FF;--orange:#FF6B00;--navy:#0D1B3E;--navy2:#152347}
 body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--navy);overflow-x:hidden}
 
+/* ── Header ── */
 .hdr{display:flex;align-items:center;justify-content:space-between;padding:12px 48px;background:var(--navy);position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(13,27,62,.4)}
 .logo-img{height:52px;object-fit:contain}
 .nav{display:flex;gap:28px;font-size:13px;font-weight:500;}
 .nav a{cursor:pointer;transition:color .2s;text-decoration:none;color:rgba(255,255,255,.6)}.nav a:hover{color:#fff}
 .nav-cta{padding:9px 20px;background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;border-radius:22px;font-size:13px;font-weight:700;cursor:pointer;border:none;box-shadow:0 4px 14px rgba(255,107,0,.4);transition:all .2s}.nav-cta:hover{transform:translateY(-1px)}
 
-.hero{display:flex;align-items:center;justify-content:center;min-height:90vh;padding:40px 48px;gap:60px;background:linear-gradient(135deg,#0D1B3E 0%,#152347 60%,#0D2560 100%);position:relative;overflow:hidden;flex-wrap:wrap}
+/* ── Barra de confiança ── */
+.trust-bar{background:#0a1730;border-bottom:1px solid rgba(255,255,255,.08);padding:8px 48px;display:flex;align-items:center;justify-content:center;gap:28px;position:sticky;top:68px;z-index:99}
+.trust-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:rgba(255,255,255,.5);font-weight:500;white-space:nowrap}
+.trust-item strong{color:rgba(255,255,255,.88);font-weight:700}
+.trust-sep{width:1px;height:14px;background:rgba(255,255,255,.15)}
+
+/* ── Hero ── */
+.hero{display:flex;align-items:center;justify-content:center;min-height:calc(100vh - 108px);padding:0 48px;gap:56px;background:linear-gradient(135deg,#0D1B3E 0%,#152347 60%,#0D2560 100%);position:relative;overflow:hidden;flex-wrap:wrap}
 .hero::before{content:'';position:absolute;top:-100px;right:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(30,144,255,.12),transparent 70%);border-radius:50%;pointer-events:none}
 .hero::after{content:'';position:absolute;bottom:-80px;left:0;width:400px;height:400px;background:radial-gradient(circle,rgba(255,107,0,.06),transparent 70%);border-radius:50%;pointer-events:none}
 
 /* GENIE */
-.genie-scene{flex:0 0 auto;position:relative;display:flex;flex-direction:column;align-items:center;width:320px}
-.genie-glow{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);width:240px;height:240px;background:radial-gradient(circle,rgba(30,144,255,.25),transparent 70%);border-radius:50%;filter:blur(22px);animation:glowpulse 3s ease-in-out infinite;z-index:0}
+.genie-scene{flex:0 0 auto;position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;width:340px;align-self:center}
+.genie-glow{position:absolute;bottom:60px;left:50%;transform:translateX(-50%);width:280px;height:280px;background:radial-gradient(circle,rgba(30,144,255,.28),transparent 70%);border-radius:50%;filter:blur(24px);animation:glowpulse 3s ease-in-out infinite;z-index:0}
 @keyframes glowpulse{0%,100%{opacity:.6;transform:translateX(-50%) scale(1)}50%{opacity:1;transform:translateX(-50%) scale(1.12)}}
 
-.genie-img-container{position:relative;width:300px;height:460px;z-index:2}
+.genie-img-container{position:relative;width:320px;height:500px;z-index:2}
 .genie-img{
   position:absolute;top:0;left:0;
-  width:300px;height:460px;
+  width:320px;height:500px;
   object-fit:contain;object-position:top center;
   animation:gfloat 5s ease-in-out infinite;
-  filter:drop-shadow(0 20px 50px rgba(30,144,255,.4)) brightness(1.05) contrast(1.05) saturate(1.1);
+  filter:drop-shadow(0 24px 56px rgba(30,144,255,.45)) brightness(1.06) contrast(1.06) saturate(1.12);
   transition:opacity .4s ease;
   image-rendering:-webkit-optimize-contrast;
   image-rendering:crisp-edges;
@@ -43,17 +58,42 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
 .genie-badge{margin-top:12px;text-align:center;font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:rgba(255,255,255,.4)}
 
 /* CHAT */
-.chat-side{flex:1;max-width:440px;z-index:10}
+.chat-side{flex:1;max-width:440px;z-index:10;align-self:center}
 .chat-hl{margin-bottom:22px}
-.chat-hl h1{font-family:'Playfair Display',serif;font-size:34px;font-weight:900;line-height:1.18;margin-bottom:10px;color:#fff}
+.chat-hl h1{font-family:'Playfair Display',serif;font-size:40px;font-weight:900;line-height:1.12;margin-bottom:12px;color:#fff}
 .chat-hl h1 em{font-style:italic;color:#FF6B00}
-.chat-hl p{font-size:14px;color:rgba(255,255,255,.5);line-height:1.65}
+.chat-hl p{font-size:14.5px;color:rgba(255,255,255,.55);line-height:1.65}
 .chatbox{background:rgba(255,255,255,.97);border:1.5px solid rgba(30,144,255,.15);border-radius:20px;overflow:hidden;box-shadow:0 8px 40px rgba(0,0,0,.3)}
+.chat-header{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid rgba(30,144,255,.08);background:#fff}
+.chat-header-av{width:34px;height:34px;border-radius:50%;overflow:hidden;position:relative;flex-shrink:0}
+.chat-header-av img{width:100%;height:100%;object-fit:cover;object-position:top}
+.online-dot{position:absolute;bottom:1px;right:1px;width:9px;height:9px;background:#22C55E;border-radius:50%;border:2px solid #fff;animation:pulse-green 2s ease-in-out infinite}
+@keyframes pulse-green{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,.4)}50%{box-shadow:0 0 0 4px rgba(34,197,94,0)}}
+.chat-header-info{flex:1}
+.chat-header-name{font-size:13px;font-weight:700;color:#0D1B3E}
+.chat-header-status{font-size:10.5px;color:#22C55E;font-weight:600}
 
-.diag-bar{display:none;align-items:center;gap:4px;padding:10px 14px 0}
-.diag-dot{width:7px;height:7px;border-radius:50%;background:rgba(30,144,255,.15);transition:all .3s}
-.diag-dot.done{background:#1E90FF}.diag-dot.active{background:#FF6B00;transform:scale(1.4)}
-.diag-lbl{font-size:10px;color:#9CA3AF;margin-left:6px}
+/* ── Barra de progresso ── */
+.diag-bar{display:none;flex-direction:column;gap:5px;padding:10px 14px 0}
+.diag-track{height:4px;background:rgba(30,144,255,.12);border-radius:4px;overflow:hidden}
+.diag-fill{height:100%;background:linear-gradient(90deg,#1E90FF,#FF6B00);border-radius:4px;transition:width .6s cubic-bezier(.4,0,.2,1);width:0%}
+.diag-lbl{font-size:10.5px;color:#6B7280;font-weight:500}
+.diag-lbl span{color:#FF6B00;font-weight:700}
+
+/* ── Pop-up de saída ── */
+.exit-overlay{position:fixed;inset:0;background:rgba(13,27,62,.7);z-index:1000;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px);opacity:0;pointer-events:none;transition:opacity .3s}
+.exit-overlay.show{opacity:1;pointer-events:all}
+.exit-modal{background:#fff;border-radius:24px;max-width:420px;width:100%;overflow:hidden;box-shadow:0 24px 80px rgba(0,0,0,.35);transform:scale(.94);transition:transform .3s}
+.exit-overlay.show .exit-modal{transform:scale(1)}
+.exit-modal-top{background:linear-gradient(135deg,#0D1B3E,#152347);padding:28px 28px 0;display:flex;align-items:flex-end;justify-content:center;gap:16px}
+.exit-modal-top img{width:120px;object-fit:contain;display:block}
+.exit-modal-body{padding:24px 28px 28px}
+.exit-modal-body h2{font-family:'Playfair Display',serif;font-size:22px;font-weight:900;color:#0D1B3E;margin-bottom:8px;line-height:1.2}
+.exit-modal-body p{font-size:13px;color:#6B7280;line-height:1.6;margin-bottom:20px}
+.exit-btn{width:100%;padding:14px;background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;border:none;border-radius:12px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;box-shadow:0 4px 14px rgba(255,107,0,.4);margin-bottom:10px;transition:all .2s}
+.exit-btn:hover{transform:translateY(-1px)}
+.exit-close{width:100%;background:none;border:none;color:#9CA3AF;font-size:12px;cursor:pointer;font-family:inherit;padding:4px}
+.exit-close:hover{color:#374151}
 
 .msgs{padding:14px;display:flex;flex-direction:column;gap:10px;max-height:320px;overflow-y:auto}
 .msgs::-webkit-scrollbar{width:3px}
@@ -68,9 +108,9 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
 .msg.g .bbl{background:#F0F7FF;border:1px solid rgba(30,144,255,.1);color:#0D1B3E;border-top-left-radius:3px}
 .msg.u .bbl{background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;border-top-right-radius:3px;text-align:right}
 
-.chips{display:flex;flex-wrap:wrap;gap:5px;padding:0 14px 10px}
-.chip{font-size:11px;padding:5px 12px;border-radius:20px;border:1.5px solid rgba(30,144,255,.2);color:#1E90FF;cursor:pointer;transition:all .2s;background:transparent;font-weight:500;font-family:inherit}
-.chip:hover{background:#EFF6FF;border-color:#1E90FF}
+.chips{display:flex;flex-wrap:wrap;gap:6px;padding:8px 14px 12px}
+.chip{font-size:11px;padding:6px 13px;border-radius:20px;border:1.5px solid rgba(30,144,255,.18);color:#1565C0;cursor:pointer;transition:all .2s;background:linear-gradient(135deg,#EFF6FF,#F0F9FF);font-weight:600;font-family:inherit;box-shadow:0 1px 3px rgba(30,144,255,.08)}
+.chip:hover{background:linear-gradient(135deg,#DBEAFE,#EFF6FF);border-color:#1E90FF;transform:translateY(-1px);box-shadow:0 3px 8px rgba(30,144,255,.15)}
 
 .iarea{display:flex;align-items:center;gap:8px;padding:12px 14px;border-top:1px solid rgba(30,144,255,.08);background:#F8FBFF}
 .iarea input{flex:1;background:transparent;border:none;outline:none;font-family:inherit;font-size:13px;color:#0D1B3E}
@@ -100,8 +140,10 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
 
 .testis{padding:70px 48px;background:#F4F7FF;border-top:1px solid rgba(30,144,255,.06)}
 .testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:900px;margin:0 auto}
-.testi-card{background:#fff;border:1.5px solid rgba(30,144,255,.1);border-radius:16px;padding:20px;transition:all .2s}
-.testi-card:hover{border-color:#1E90FF;transform:translateY(-3px);box-shadow:0 8px 24px rgba(30,144,255,.1)}
+.testi-card{background:#fff;border:1.5px solid rgba(30,144,255,.1);border-radius:16px;padding:20px;transition:all .25s;position:relative;overflow:hidden}
+.testi-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,#1E90FF,#FF6B00);opacity:0;transition:opacity .25s}
+.testi-card:hover{border-color:rgba(30,144,255,.3);transform:translateY(-4px);box-shadow:0 12px 32px rgba(30,144,255,.12)}
+.testi-card:hover::before{opacity:1}
 .testi-stars{color:#FF6B00;font-size:14px;margin-bottom:10px}
 .testi-text{font-size:13px;color:#374151;line-height:1.65;margin-bottom:14px;font-style:italic}
 .testi-author{display:flex;align-items:center;gap:8px}
@@ -124,18 +166,34 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
 .contact-form button{width:100%;padding:11px;background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit}
 .contact-form button:hover{opacity:.9}
 
+/* Botões de retorno de sessão */
+.session-btns{display:flex;gap:8px;margin-top:10px;flex-wrap:wrap}
+.session-btn{flex:1;padding:10px 14px;border-radius:12px;font-size:12px;font-weight:700;cursor:pointer;border:none;font-family:inherit;transition:all .2s;min-width:120px}
+.session-btn-continue{background:linear-gradient(135deg,#1E90FF,#0A6EDB);color:#fff;box-shadow:0 3px 10px rgba(30,144,255,.3)}
+.session-btn-continue:hover{transform:translateY(-1px);box-shadow:0 5px 14px rgba(30,144,255,.4)}
+.session-btn-restart{background:#F1F5F9;color:#64748B;border:1.5px solid #E2E8F0}
+.session-btn-restart:hover{background:#E2E8F0;color:#374151}
+
+/* cursor piscando no streaming */
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+.stream-cursor{display:inline-block;width:2px;height:13px;background:#1E90FF;margin-left:2px;vertical-align:middle;animation:blink .7s ease-in-out infinite}
+
 @media(max-width:768px){
   .hdr{padding:10px 16px}
   .nav{display:none}
-  .hero{flex-direction:column;padding:20px 16px;gap:20px;min-height:auto}
-  .genie-scene{width:180px}
-  .genie-img{width:180px;height:280px}
-  .genie-glow{width:140px;height:140px;bottom:40px}
+  .trust-bar{padding:6px 12px;gap:12px;top:56px;overflow-x:auto;justify-content:flex-start}
+  .trust-sep{display:none}
+  .hero{flex-direction:column;padding:16px 12px;gap:14px;min-height:auto}
+  /* gênio oculto no mobile para dar espaço ao chat */
+  .genie-scene{display:none}
   .chat-side{max-width:100%;width:100%}
-  .chatbox{border-radius:16px}
-  .chat-hl h1{font-size:22px}
+  .chat-hl{margin-bottom:14px;padding:0 4px}
+  .chat-hl h1{font-size:21px;line-height:1.2}
   .chat-hl p{font-size:12px}
-  .msgs{max-height:380px}
+  .chatbox{border-radius:16px}
+  /* chat maior no mobile */
+  .msgs{max-height:calc(100vh - 320px);min-height:220px}
+  .iarea input{font-size:16px} /* evita zoom no iOS */
   .how{padding:40px 16px}
   .steps{flex-direction:column;gap:24px}
   .steps::before{display:none}
@@ -143,6 +201,14 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
   .testi-grid{grid-template-columns:1fr}
   .ftr{flex-direction:column;gap:16px;padding:20px 16px;text-align:center}
   .ftr-links{flex-wrap:wrap;justify-content:center}
+}
+@media(min-width:769px) and (max-width:1024px){
+  .genie-scene{width:220px}
+  .genie-img-container{width:220px;height:340px}
+  .genie-img{width:220px;height:340px}
+  .genie-glow{width:170px;height:170px;bottom:40px}
+  .hero{gap:32px;padding:0 24px}
+  .chat-hl h1{font-size:30px}
 }
 </style>
 </head>
@@ -156,6 +222,15 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
     <a href="#contato">Parceiros</a>
   </nav>
   <button class="nav-cta" onclick="document.getElementById('inp').focus()">Falar com o Gênio 🧞</button>
+</div>
+<div class="trust-bar">
+  <div class="trust-item">⭐ <strong>4.7</strong> de avaliação média</div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">✅ <strong>1.200+</strong> problemas resolvidos</div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">🚚 Entrega em <strong>2 a 5 dias</strong></div>
+  <div class="trust-sep"></div>
+  <div class="trust-item">🔒 Compra <strong>100% segura</strong></div>
 </div>
 
 <div class="hero">
@@ -180,22 +255,27 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
       <p>Conta pro Gênio. Ele diagnostica de verdade — sem pressa, sem chute — e só indica quando tem certeza.</p>
     </div>
     <div class="chatbox">
+      <div class="chat-header">
+        <div class="chat-header-av">
+          <img src="https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png" alt="Gênio"/>
+          <span class="online-dot"></span>
+        </div>
+        <div class="chat-header-info">
+          <div class="chat-header-name">Gênio da Lâmpada</div>
+          <div class="chat-header-status">● Disponível agora</div>
+        </div>
+        <div style="font-size:11px;color:rgba(13,27,62,.35);font-weight:500">Mix Mart</div>
+      </div>
       <div id="diagBar" class="diag-bar">
-        <div class="diag-dot" id="d1"></div>
-        <div class="diag-dot" id="d2"></div>
-        <div class="diag-dot" id="d3"></div>
-        <div class="diag-dot" id="d4"></div>
-        <div class="diag-dot" id="d5"></div>
-        <span class="diag-lbl" id="diagLbl">Diagnóstico em andamento...</span>
+        <div class="diag-lbl" id="diagLbl">Entendendo o problema...</div>
+        <div class="diag-track"><div class="diag-fill" id="diagFill"></div></div>
       </div>
       <div class="msgs" id="msgs">
         <div class="msg g">
           <div class="av g"><img src="https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png" alt="Gênio"/></div>
           <div class="bbl">E aí! Pode me chamar de Gênio 😄
 
-Olha — eu poderia já sair indicando produto. Mas não é assim que funciona aqui. Antes de qualquer coisa, quero entender de verdade o que tá te incomodando.
-
-Me conta: qual é aquela situação do dia a dia que você já "aceitou como normal" mas no fundo sabe que tá errada?</div>
+Qual é aquela coisa do dia a dia que tá te incomodando — e que você já desistiu de resolver?</div>
         </div>
       </div>
       <div class="chips" id="chips">
@@ -267,6 +347,21 @@ Me conta: qual é aquela situação do dia a dia que você já "aceitou como nor
   </div>
 </div>
 
+<!-- Pop-up de saída -->
+<div class="exit-overlay" id="exitOverlay">
+  <div class="exit-modal">
+    <div class="exit-modal-top">
+      <img src="https://i.ibb.co/Xk4R0tDh/Chat-GPT-Image-29-de-abr-de-2026-12-19-55-removebg-preview.png" alt="Gênio"/>
+    </div>
+    <div class="exit-modal-body">
+      <h2>Espera — você ainda não resolveu seu problema 👀</h2>
+      <p>O Gênio leva menos de 2 minutos pra encontrar exatamente o que você precisa. Sem chute, sem enrolação.</p>
+      <button class="exit-btn" onclick="closeExit(true)">Continuar com o Gênio 🧞</button>
+      <button class="exit-close" onclick="closeExit(false)">Não, pode ir embora</button>
+    </div>
+  </div>
+</div>
+
 <div class="ftr" id="contato">
   <img class="ftr-logo" src="https://i.ibb.co/gx9gqBd/logo-sem-fundo-mm.png" alt="Mix Mart"/>
   <div class="ftr-links">
@@ -274,7 +369,7 @@ Me conta: qual é aquela situação do dia a dia que você já "aceitou como nor
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="url(#ig)"/><defs><radialGradient id="ig" cx="30%" cy="107%" r="120%"><stop offset="0%" stop-color="#fdf497"/><stop offset="5%" stop-color="#fdf497"/><stop offset="45%" stop-color="#fd5949"/><stop offset="60%" stop-color="#d6249f"/><stop offset="90%" stop-color="#285AEB"/></radialGradient></defs><path d="M12 8.5a3.5 3.5 0 100 7 3.5 3.5 0 000-7z" fill="#fff"/><path d="M16.5 6h-9A1.5 1.5 0 006 7.5v9A1.5 1.5 0 007.5 18h9a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0016.5 6zM12 17a5 5 0 110-10 5 5 0 010 10zm5.25-9.25a1.25 1.25 0 11-2.5 0 1.25 1.25 0 012.5 0z" fill="#fff"/></svg>
       Instagram
     </a>
-    <a href="https://wa.me/55" target="_blank">
+    <a href="https://wa.me/5511999999999" target="_blank">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect width="24" height="24" rx="6" fill="#25D366"/><path d="M12 4C7.58 4 4 7.58 4 12c0 1.42.38 2.75 1.03 3.9L4 20l4.22-1.01A7.94 7.94 0 0012 20c4.42 0 8-3.58 8-8s-3.58-8-8-8zm3.9 11.1c-.16.45-1 .88-1.36.93-.35.05-.76.07-1.22-.08-.28-.09-.64-.22-1.1-.43-1.93-.87-3.2-2.8-3.3-2.93-.1-.13-.8-1.07-.8-2.04 0-.97.5-1.45.68-1.65.18-.2.39-.25.52-.25h.37c.12 0 .28-.04.44.34l.62 1.56c.05.13.09.28.01.45l-.22.36-.33.37c-.11.12-.22.24-.1.47.13.22.57.95 1.22 1.54.84.75 1.55 1 1.77 1.1.22.1.35.09.48-.05l.5-.58c.13-.16.26-.1.44-.06l1.54.73c.18.09.3.13.35.2.04.07.04.42-.12.87z" fill="#fff"/></svg>
       WhatsApp
     </a>
@@ -291,14 +386,17 @@ Me conta: qual é aquela situação do dia a dia que você já "aceitou como nor
 </div>
 
 <script>
-// ===== IMAGENS DO GÊNIO POR EXPRESSÃO =====
+const WORKER_URL = 'https://mixmart-genio.mixmartimports.workers.dev';
+const SESSION_KEY = 'genio_session';
+const SESSION_TTL = 24 * 60 * 60 * 1000; // 24h
+
+// ── Imagens do Gênio ───────────────────────────────────────────────────────
 const GENIE_IMGS = {
   happy:    'https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png',
   thinking: 'https://i.ibb.co/XrM3j1y7/Chat-GPT-Image-29-de-abr-de-2026-12-16-45-removebg-preview.png',
   shocked:  'https://i.ibb.co/Xk4R0tDh/Chat-GPT-Image-29-de-abr-de-2026-12-19-55-removebg-preview.png',
   excited:  'https://i.ibb.co/pj1YhdX2/Chat-GPT-Image-29-de-abr-de-2026-12-23-55-removebg-preview.png',
 };
-
 let currentMood = 'happy';
 
 function setGenie(mood) {
@@ -311,208 +409,152 @@ function setGenie(mood) {
   currentMood = mood;
 }
 
-// Detecta expressão baseada no CONTEÚDO da resposta do Gênio (não do usuário)
 function detectGenieExpression(text) {
   const l = text.toLowerCase();
-  // Comemorando — quando recomenda produto ou está muito animado
-  if (l.includes('perfeito') || l.includes('encontrei') || l.includes('solução') ||
-      l.includes('resolve') || l.includes('exatamente') || l.includes('diagnóstico') ||
-      l.includes('olha só') || l.includes('olha isso') || l.includes('👇') ||
-      l.includes('🎉') || l.includes('🔥')) return 'excited';
-  // Chocado — quando lead descreve algo absurdo ou urgente
-  if (l.includes('sério?') || l.includes('nossa') || l.includes('meu deus') ||
-      l.includes('que situação') || l.includes('isso é grave') ||
-      l.includes('toda manhã') || l.includes('todo dia') ||
-      l.includes('😱') || l.includes('😨')) return 'shocked';
-  // Pensativo — quando está fazendo perguntas de diagnóstico
-  if (l.includes('me conta') || l.includes('me fala') || l.includes('qual é') ||
-      l.includes('você usa') || l.includes('acontece') || l.includes('como você') ||
-      l.includes('pergunto') || l.includes('preciso entender') ||
-      l.includes('🤔') || l.includes('hmm')) return 'thinking';
+  if (l.includes('[produto:') || l.includes('[link:') || l.includes('🎉') || l.includes('🔥') || l.includes('👇')) return 'excited';
+  if (l.includes('caramba') || l.includes('nossa') || l.includes('😱') || l.includes('😨')) return 'shocked';
+  if (l.includes('me fala') || l.includes('me conta') || l.includes('🤔')) return 'thinking';
   return 'happy';
 }
 
-// Detecta expressão baseada no que o LEAD escreve
 function detectUserMood(text) {
   const l = text.toLowerCase();
-  // Chocado — quando lead descreve situação grave/urgente
-  if (l.includes('toda manhã') || l.includes('todo dia') || l.includes('sempre') ||
-      l.includes('foge') || l.includes('some') || l.includes('cadê') ||
-      l.includes('perco tudo') || l.includes('impossível') ||
-      l.includes('odeio') || l.includes('não aguento')) return 'shocked';
-  // Animado — quando lead está empolgado
-  if (l.includes('!') && (l.includes('ótim') || l.includes('perfeito') ||
-      l.includes('quero') || l.includes('gostei') || l.includes('incrível'))) return 'excited';
-  // Pensativo — mensagens curtas ou com dúvida
-  if (l.includes('?') || l.length < 25) return 'thinking';
+  if (l.includes('odeio') || l.includes('não aguento') || l.includes('toda manhã') || l.includes('todo dia')) return 'shocked';
+  if (l.includes('!') && l.length > 20) return 'excited';
+  if (l.includes('?') || l.length < 30) return 'thinking';
   return 'happy';
 }
 
-// ===== SYSTEM PROMPT =====
-const SYSTEM_PROMPT = `Você é o Gênio da Lâmpada da Mix Mart — uma loja de produtos tech que resolve problemas reais do dia a dia.
+// ── Estado ─────────────────────────────────────────────────────────────────
+let history = [], waiting = false, showChips = true, diagStep = 0;
 
-PERSONALIDADE:
-- Tem charme próprio e autêntico. Não é robótico, não é vendedor, não é assistente genérico.
-- Faz piada na hora certa — com inteligência e bom senso, nunca forçado.
-- Fala português brasileiro informal mas elegante.
-- Se importa genuinamente com o problema. Isso aparece nas respostas.
-- NUNCA usa frases como "Que ótimo!", "Entendo sua situação", "Posso ajudar com isso", "Olá", "Claro!", "Com certeza".
-- Tem senso de humor natural: se a pessoa falar algo engraçado ou absurdo, reage com humor genuíno.
-- Se a situação for séria ou urgente, reage com seriedade e empatia real.
+// ── localStorage — sessão ──────────────────────────────────────────────────
+function saveSession() {
+  try {
+    localStorage.setItem(SESSION_KEY, JSON.stringify({
+      ts: Date.now(),
+      history,
+      diagStep,
+    }));
+  } catch(e) {}
+}
 
-MÉTODO DE DIAGNÓSTICO (OBRIGATÓRIO — COMO UM MÉDICO):
-- NÃO recomende antes de fazer no mínimo 4-5 perguntas específicas.
-- Uma pergunta por turno. NUNCA duas no mesmo turno.
-- SEMPRE use o contexto exato do que a pessoa disse — referencie palavras, nomes, situações específicas.
-- Se ela mencionou nome de pet, use o nome nas próximas mensagens.
-- Se ela disse "toda manhã", diga "toda manhã" na sua resposta.
-- Se ela deu detalhe específico, mostre que você ouviu esse detalhe.
-- NUNCA faça pergunta genérica que poderia ser pra qualquer pessoa.
+function loadSession() {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    if (!raw) return null;
+    const s = JSON.parse(raw);
+    if (Date.now() - s.ts > SESSION_TTL) { localStorage.removeItem(SESSION_KEY); return null; }
+    return s;
+  } catch(e) { return null; }
+}
 
-PRODUTOS (recomende APENAS esses):
-1. Caneta iPad - R$89,90 — pra quem usa iPad e quer escrever/desenhar com precisão
-2. Microfone de Lapela - R$79,90 — pra quem grava conteúdo e quer áudio limpo
-3. Kit Mouse + Teclado bluetooth c/ bolsinha - R$149,90 — pra quem trabalha fora
-4. Fone Melobuds c/ cancelamento de ruído - R$129,90 — pra quem precisa focar
-5. AirTag Rastreador - R$99,90 — pra quem perde objetos ou quer rastrear pet
-6. Estação de Carregamento 3 em 1 - R$119,90 — pra quem tem celular+fone+smartwatch
+function clearSession() {
+  localStorage.removeItem(SESSION_KEY);
+}
 
-QUANDO RECOMENDAR:
-- Só após mínimo 4 trocas de mensagem e diagnóstico completo.
-- Explique POR QUE resolve a dor específica DAQUELA pessoa com os detalhes que ela deu.
-- Termine com exatamente: [PRODUTO: nome exato do produto]
+// Extrai primeiro nome da conversa salva
+function extractName(hist) {
+  for (const m of hist) {
+    if (m.role === 'assistant') {
+      // Tenta achar padrão "Oi, [Nome]" ou uso do nome após "se chama"
+      const match = m.content.match(/(?:tudo bem,?\s+|oi[,!]?\s+|e aí[,!]?\s+)([A-ZÁÉÍÓÚÃÕ][a-záéíóúãõ]+)/);
+      if (match) return match[1];
+    }
+  }
+  return null;
+}
 
-FORMATO: Máximo 3 parágrafos curtos. Nunca comece com "Olá", "Claro", "Com certeza", "Entendo", "Ótimo".`;
-
-const PRODS = [
-  {name:"Caneta iPad",emoji:"✏️",price:"R$ 89,90",link:"#",keys:["caneta ipad","caneta","ipad"]},
-  {name:"Microfone de Lapela",emoji:"🎙️",price:"R$ 79,90",link:"#",keys:["microfone","lapela"]},
-  {name:"Kit Mouse + Teclado",emoji:"⌨️",price:"R$ 149,90",link:"#",keys:["kit mouse","teclado","mouse"]},
-  {name:"Fone Melobuds",emoji:"🎧",price:"R$ 129,90",link:"#",keys:["fone melobuds","melobuds","fone","cancelamento"]},
-  {name:"AirTag Rastreador",emoji:"📍",price:"R$ 99,90",link:"#",keys:["airtag","rastreador"]},
-  {name:"Estação 3 em 1",emoji:"🔋",price:"R$ 119,90",link:"#",keys:["estação","carregamento","3 em 1"]}
+// ── Progresso diagnóstico ──────────────────────────────────────────────────
+const DIAG_STAGES = [
+  { pct: 15, label: 'Entendendo o problema...' },
+  { pct: 35, label: 'Identificando a dor real...' },
+  { pct: 55, label: 'Mapeando o contexto...' },
+  { pct: 75, label: 'Analisando as melhores opções...' },
+  { pct: 92, label: 'Quase lá...' },
+  { pct: 100, label: '✓ Diagnóstico completo!' },
 ];
 
-let history=[], waiting=false, showChips=true, diagStep=0;
-
-function updateProgress(step){
-  document.getElementById('diagBar').style.display='flex';
-  for(let i=1;i<=5;i++){
-    const d=document.getElementById('d'+i);
-    if(i<step)d.className='diag-dot done';
-    else if(i===step)d.className='diag-dot active';
-    else d.className='diag-dot';
-  }
-  document.getElementById('diagLbl').textContent=step>=5?'Diagnóstico completo ✓':`Pergunta ${step} de 5`;
+function updateProgress(step) {
+  const bar = document.getElementById('diagBar');
+  bar.style.display = 'flex';
+  const idx = Math.min(step - 1, DIAG_STAGES.length - 1);
+  const stage = DIAG_STAGES[idx];
+  document.getElementById('diagFill').style.width = stage.pct + '%';
+  const lbl = document.getElementById('diagLbl');
+  lbl.innerHTML = step >= 6
+    ? '<span>✓ Diagnóstico completo!</span>'
+    : stage.label;
 }
 
-function delay(ms){return new Promise(r=>setTimeout(r,ms))}
+function delay(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-function getAvatarImg(mood='happy'){
-  return GENIE_IMGS[mood] || GENIE_IMGS.happy;
-}
-
-function addMsg(type, html, prods=null, mood='happy'){
-  const msgs=document.getElementById('msgs');
-  const div=document.createElement('div');
-  div.className=`msg ${type==='user'?'u':'g'}`;
-  const avatarSrc = getAvatarImg(mood);
-  if(prods){
-    const cards=prods.map(p=>`<a class="pc" href="${p.link}"><span class="pe">${p.emoji}</span><div class="pn">${p.name}</div><div class="pp">${p.price}</div><div class="pl">🔗 Ver produto</div></a>`).join('');
-    div.innerHTML=`<div class="av g"><img src="${avatarSrc}" alt="Gênio"/></div><div class="bbl" style="max-width:95%"><div class="prow">${cards}</div></div>`;
-  } else if(type==='user'){
-    div.innerHTML=`<div class="av u">EU</div><div class="bbl">${html}</div>`;
-  } else {
-    div.innerHTML=`<div class="av g"><img src="${avatarSrc}" alt="Gênio"/></div><div class="bbl">${html}</div>`;
-  }
-  msgs.appendChild(div);
-  msgs.scrollTop=msgs.scrollHeight;
-}
-
-function showTyping(){
-  const msgs=document.getElementById('msgs');
-  const d=document.createElement('div');
-  d.className='msg g';d.id='typ';
-  d.innerHTML=`<div class="av g"><img src="${GENIE_IMGS.thinking}" alt="Gênio"/></div><div class="bbl"><div style="display:flex;gap:4px;align-items:center">${[0,1,2].map(i=>`<div style="width:6px;height:6px;border-radius:50%;background:#1E90FF;opacity:.4;animation:dot 1.2s ease-in-out ${i*.2}s infinite"></div>`).join('')}</div></div>`;
-  msgs.appendChild(d);msgs.scrollTop=msgs.scrollHeight;
-}
-function hideTyping(){const t=document.getElementById('typ');if(t)t.remove();}
-
-function extractProduct(text){
-  const match=text.match(/\[PRODUTO:\s*([^\]]+)\]/i);
-  if(!match)return null;
-  const name=match[1].toLowerCase().trim();
-  return PRODS.find(p=>p.keys.some(k=>name.includes(k)))||null;
-}
-
-async function callAPI(userMsg){
-  history.push({role:'user',content:userMsg});
-  const resp=await fetch('https://mixmart-genio.mixmartimports.workers.dev',{
-    method:'POST',
-    headers:{'Content-Type':'application/json'},
-    body:JSON.stringify({messages:history})
-  });
-  const data=await resp.json();
-  if(data.error)throw new Error(data.error);
-  const reply=data.reply;
-  history.push({role:'assistant',content:reply});
-  return reply;
-}
-
-function showContactForm(genieName){
+// ── Mensagens ──────────────────────────────────────────────────────────────
+function addMsg(type, html, mood = 'happy') {
   const msgs = document.getElementById('msgs');
-  const formId = 'cf_' + Date.now();
   const div = document.createElement('div');
-  div.className = 'msg g';
-  div.innerHTML = '<div class="av g"><img src="https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png" alt="Genio"/></div>' +
-    '<div class="contact-form" id="' + formId + '">' +
-    '<input type="tel" id="wpp_' + formId + '" placeholder="WhatsApp com DDD (ex: 11999990000)"/>' +
-    '<input type="email" id="email_' + formId + '" placeholder="Ou seu melhor email"/>' +
-    '<button onclick="submitContact('' + formId + '')">Enviar meu contato 🚀</button>' +
-    '</div>';
+  div.className = `msg ${type === 'user' ? 'u' : 'g'}`;
+  const avatarSrc = GENIE_IMGS[mood] || GENIE_IMGS.happy;
+  if (type === 'user') {
+    div.innerHTML = `<div class="av u">EU</div><div class="bbl">${html}</div>`;
+  } else {
+    div.innerHTML = `<div class="av g"><img src="${avatarSrc}" alt="Gênio"/></div><div class="bbl">${html}</div>`;
+  }
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
+  return div;
 }
 
-async function submitContact(formId){
-  const wpp = document.getElementById('wpp_' + formId).value.trim();
-  const email = document.getElementById('email_' + formId).value.trim();
-  if(!wpp && !email){ alert('Preencha pelo menos um contato!'); return; }
-  const contato = wpp ? wpp : email;
-  const tipo = wpp ? 'WhatsApp' : 'Email';
-  
-  // Esconde o form
-  document.getElementById(formId).innerHTML = '<p style="font-size:13px;color:#1E90FF;text-align:center;padding:8px">✅ Contato recebido! Retornaremos em até 24h.</p>';
-  
-  // Manda pro Gênio processar e salvar
-  addMsg('user', tipo + ': ' + contato);
-  waiting = true;
-  setGenie('excited');
-  await new Promise(r => setTimeout(r, 800));
-  addMsg('genie', 'Maravilha! Já anotei aqui. Em até 24h você recebe a indicação certeira. 🎯', null, 'excited');
-  
-  // Salva direto no Airtable
-  try {
-    const userMsgs = history.filter(m => m.role === 'user');
-    const dorEscrita = userMsgs[0] ? userMsgs[0].content : '';
-    await fetch('https://mixmart-genio.mixmartimports.workers.dev', {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        messages: [...history, {role:'user', content: '[LEAD_CONTATO: ' + contato + ']'}]
-      })
-    });
-  } catch(e){}
-  waiting = false;
-}
-
-function addBuyBtn(link, nome){
+// Cria bolha de streaming vazia — retorna {bubble, bbl} sem depender de ID
+function createStreamBubble(mood = 'thinking') {
   const msgs = document.getElementById('msgs');
   const div = document.createElement('div');
   div.className = 'msg g';
-  div.innerHTML = `<div class="av g"><img src="https://i.ibb.co/FbsRrMKL/Chat-GPT-Image-28-de-abr-de-2026-14-55-02-removebg-preview.png" alt="Gênio"/></div>
+  const avatarSrc = GENIE_IMGS[mood] || GENIE_IMGS.happy;
+  const av = document.createElement('div');
+  av.className = 'av g';
+  av.innerHTML = `<img src="${avatarSrc}" alt="Gênio"/>`;
+  const bbl = document.createElement('div');
+  bbl.className = 'bbl';
+  div.appendChild(av);
+  div.appendChild(bbl);
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+  return { bubble: div, bbl };
+}
+
+function showTyping() {
+  const msgs = document.getElementById('msgs');
+  const d = document.createElement('div');
+  d.className = 'msg g'; d.id = 'typ';
+  d.innerHTML = `<div class="av g"><img src="${GENIE_IMGS.thinking}" alt="Gênio"/></div><div class="bbl"><div style="display:flex;gap:4px;align-items:center">${[0,1,2].map(i=>`<div style="width:6px;height:6px;border-radius:50%;background:#1E90FF;opacity:.4;animation:dot 1.2s ease-in-out ${i*.2}s infinite"></div>`).join('')}</div></div>`;
+  msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+}
+function hideTyping() { const t = document.getElementById('typ'); if (t) t.remove(); }
+
+// Remove markdown e tags de controle para exibição
+function cleanForDisplay(text) {
+  return text
+    .replace(/\*\*([^*]+)\*\*/g, '$1')
+    .replace(/\*([^*]+)\*/g, '$1')
+    .replace(/_([^_]+)_/g, '$1')
+    .replace(/#{1,6}\s/g, '')
+    .replace(/\[PRODUTO:[^\]]+\]/gi, '')
+    .replace(/\[LINK:[^\]]+\]/gi, '')
+    .replace(/\[LEAD:[^\]]+\]/gi, '')
+    .trim();
+}
+
+// ── Botão de compra ────────────────────────────────────────────────────────
+function addBuyBtn(link, nome) {
+  const msgs = document.getElementById('msgs');
+  const div = document.createElement('div');
+  div.className = 'msg g';
+  div.innerHTML = `<div class="av g"><img src="${GENIE_IMGS.excited}" alt="Gênio"/></div>
     <div class="bbl" style="max-width:95%;background:#fff;border:1.5px solid rgba(255,107,0,.25);border-radius:16px;padding:12px">
-      <a href="${link}" target="_blank" rel="noopener" style="display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;text-decoration:none;border-radius:12px;font-size:14px;font-weight:700;box-shadow:0 4px 14px rgba(255,107,0,.4)">
+      <a href="${link}" target="_blank" rel="noopener"
+         onclick="trackClick('${nome || 'produto'}')"
+         style="display:flex;align-items:center;justify-content:center;gap:8px;padding:13px 18px;background:linear-gradient(135deg,#FF6B00,#FF8C00);color:#fff;text-decoration:none;border-radius:12px;font-size:14px;font-weight:700;box-shadow:0 4px 14px rgba(255,107,0,.4)">
         🛒 ${nome ? nome : 'Ver produto'}
       </a>
       <p style="font-size:11px;color:#9CA3AF;text-align:center;margin-top:8px">Toque para ir direto ao produto</p>
@@ -521,62 +563,292 @@ function addBuyBtn(link, nome){
   msgs.scrollTop = msgs.scrollHeight;
 }
 
-async function send(text=null){
-  if(waiting)return;
-  const inp=document.getElementById('inp');
-  text=text||inp.value.trim();
-  if(!text)return;
-  if(showChips){document.getElementById('chips').style.display='none';showChips=false;}
-  addMsg('user',text);
-  inp.value='';
-  waiting=true;
-  diagStep++;
-  if(diagStep<=5)updateProgress(diagStep);
-
-  // Gênio reage ao que o lead escreveu enquanto "pensa"
-  const userMood = detectUserMood(text);
-  setGenie(userMood);
-  await delay(300);
-  setGenie('thinking'); // volta pra pensativo enquanto digita
-  showTyping();
-  await delay(1200 + Math.random()*800);
-  hideTyping();
-
-  try{
-    const reply=await callAPI(text);
-    const genieMood = detectGenieExpression(reply);
-    setGenie(genieMood);
-
-    // Remove markdown
-    const cleanMd = s => s.replace(/\*\*([^*]+)\*\*/g,'$1').replace(/\*([^*]+)\*/g,'$1').replace(/\_([^_]+)\_/g,'$1').replace(/#{1,6}\s/g,'');
-
-    // Extrai link
-    const linkMatch = reply.match(/\[LINK:\s*(https?:\/\/[^\]]+)\]/i);
-    const prodLink = linkMatch ? linkMatch[1].trim() : null;
-
-    // Limpa resposta
-    const cleanReply = cleanMd(reply.replace(/\[PRODUTO:[^\]]+\]/gi,'').replace(/\[LINK:[^\]]+\]/gi,'').replace(/\[LEAD:[^\]]+\]/gi,'').trim());
-    // Detecta se o Gênio está pedindo contato
-    const askingContact = /whatsapp|e-?mail|contato|ddd|me passa/i.test(cleanReply) && /LEAD/i.test(reply);
-    if(cleanReply) addMsg('genie', cleanReply.replace(/\n/g,'<br>'), null, genieMood);
-    if(askingContact){ await delay(400); showContactForm(); }
-
-    // Botão de compra
-    if(prodLink){
-      await delay(600);
-      setGenie('excited');
-      addBuyBtn(prodLink);
-      updateProgress(5);
-    }
-  }catch(e){
-    hideTyping();
-    setGenie('shocked');
-    addMsg('genie','Tive um probleminha técnico agora 😅 Tenta de novo em instantes!', null, 'shocked');
-  }
-  waiting=false;
+// ── Métrica: clique no link ────────────────────────────────────────────────
+function trackClick(nomeProduto) {
+  try {
+    fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        messages: [...history, { role: 'user', content: '[CLIQUE_PRODUTO: ' + nomeProduto + ']' }]
+      })
+    });
+  } catch(e) {}
 }
 
-function sc(btn){send(btn.textContent);}
+// ── Formulário de contato ──────────────────────────────────────────────────
+function showContactForm() {
+  const msgs = document.getElementById('msgs');
+  const formId = 'cf_' + Date.now();
+  const div = document.createElement('div');
+  div.className = 'msg g';
+  div.innerHTML = '<div class="av g"><img src="' + GENIE_IMGS.happy + '" alt="Genio"/></div>' +
+    '<div class="contact-form" id="' + formId + '">' +
+    '<input type="tel" id="wpp_' + formId + '" placeholder="WhatsApp com DDD (ex: 11999990000)"/>' +
+    '<input type="email" id="email_' + formId + '" placeholder="Ou seu melhor email"/>' +
+    '<button onclick="submitContact(\'' + formId + '\')">Enviar meu contato 🚀</button>' +
+    '</div>';
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+async function submitContact(formId) {
+  const wpp   = document.getElementById('wpp_' + formId).value.trim();
+  const email = document.getElementById('email_' + formId).value.trim();
+  if (!wpp && !email) { alert('Preencha pelo menos um contato!'); return; }
+  const contato = wpp ? wpp : email;
+  const tipo    = wpp ? 'WhatsApp' : 'Email';
+  document.getElementById(formId).innerHTML = '<p style="font-size:13px;color:#1E90FF;text-align:center;padding:8px">✅ Contato recebido! Retornaremos em até 24h.</p>';
+  addMsg('user', tipo + ': ' + contato);
+  waiting = true;
+  setGenie('excited');
+  await delay(800);
+  addMsg('genie', 'Maravilha! Já anotei aqui. Em até 24h você recebe a indicação certeira. 🎯', 'excited');
+  try {
+    await fetch(WORKER_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: [...history, { role: 'user', content: '[LEAD_CONTATO: ' + contato + ']' }] })
+    });
+  } catch(e) {}
+  clearSession();
+  waiting = false;
+}
+
+// ── API — detecta streaming ou JSON automaticamente ───────────────────────
+async function callAPIStream(userMsg, onToken, onDone) {
+  history.push({ role: 'user', content: userMsg });
+  saveSession();
+
+  const resp = await fetch(WORKER_URL, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ messages: history }),
+  });
+
+  const contentType = resp.headers.get('content-type') || '';
+
+  // ── Worker novo: streaming SSE ─────────────────────────────────────────
+  if (contentType.includes('text/event-stream')) {
+    const reader  = resp.body.getReader();
+    const decoder = new TextDecoder();
+    let buf = '', fullText = '';
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+      buf += decoder.decode(value, { stream: true });
+      const lines = buf.split('\n');
+      buf = lines.pop() || '';
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        try {
+          const data = JSON.parse(line.slice(6));
+          if (data.t) {
+            fullText += data.t;
+            onToken(fullText);           // passa o texto acumulado completo
+          }
+          if (data.done) {
+            history.push({ role: 'assistant', content: data.full });
+            saveSession();
+            onDone(data.full);
+          }
+        } catch(e) {}
+      }
+    }
+
+  // ── Worker antigo: resposta JSON normal ────────────────────────────────
+  } else {
+    const data = await resp.json();
+    if (data.error) throw new Error(data.error);
+    const reply = data.reply;
+    history.push({ role: 'assistant', content: reply });
+    saveSession();
+    // Simula digitação em chunks para parecer natural sem ser lento
+    const CHUNK = 6; // caracteres por tick
+    let full = '';
+    for (let i = 0; i < reply.length; i += CHUNK) {
+      full += reply.slice(i, i + CHUNK);
+      onToken(full);
+      await delay(22);
+    }
+    onDone(reply);
+  }
+}
+
+// ── Envio de mensagem ──────────────────────────────────────────────────────
+async function send(text = null) {
+  if (waiting) return;
+  const inp = document.getElementById('inp');
+  text = text || inp.value.trim();
+  if (!text) return;
+  if (showChips) { document.getElementById('chips').style.display = 'none'; showChips = false; }
+  addMsg('user', text);
+  inp.value = '';
+  waiting = true;
+  diagStep++;
+  if (diagStep <= 5) updateProgress(diagStep);
+
+  const userMood = detectUserMood(text);
+  setGenie(userMood);
+  await delay(180);
+  setGenie('thinking');
+  showTyping();
+
+  try {
+    let streamBubble = null;
+    let bblEl = null;
+
+    // Garante que a bolha de streaming existe antes de escrever
+    function ensureBubble() {
+      if (!streamBubble) {
+        hideTyping();
+        const result = createStreamBubble('thinking');
+        streamBubble = result.bubble;
+        bblEl = result.bbl; // referência direta — sem getElementById
+      }
+    }
+
+    await callAPIStream(text,
+      // onToken — recebe o texto acumulado até agora (sem race condition)
+      (fullSoFar) => {
+        ensureBubble();
+        const visible = cleanForDisplay(fullSoFar);
+        if (bblEl) {
+          bblEl.innerHTML = visible.replace(/\n/g, '<br>') + '<span class="stream-cursor"></span>';
+          document.getElementById('msgs').scrollTop = document.getElementById('msgs').scrollHeight;
+        }
+      },
+      // onDone — texto completo chegou
+      (fullReply) => {
+        const genieMood = detectGenieExpression(fullReply);
+        setGenie(genieMood);
+
+        const cleanReply = cleanForDisplay(fullReply);
+
+        // Atualiza bolha final sem cursor
+        if (bblEl) {
+          bblEl.innerHTML = cleanReply.replace(/\n/g, '<br>');
+          const avImg = streamBubble ? streamBubble.querySelector('.av.g img') : null;
+          if (avImg) avImg.src = GENIE_IMGS[genieMood] || GENIE_IMGS.happy;
+        } else {
+          hideTyping();
+          if (cleanReply) addMsg('genie', cleanReply.replace(/\n/g, '<br>'), genieMood);
+        }
+
+        // Formulário de contato
+        const askingContact = /whatsapp|e-?mail|contato|ddd|me passa/i.test(cleanReply) && /LEAD/i.test(fullReply);
+        if (askingContact) setTimeout(showContactForm, 400);
+
+        // Botão de compra — extrai todos os links
+        const linkMatches = [...fullReply.matchAll(/\[PRODUTO:\s*([^\]]+)\]\s*\[LINK:\s*(https?:\/\/[^\]]+)\]/gi)];
+        if (linkMatches.length > 0) {
+          setTimeout(() => {
+            setGenie('excited');
+            linkMatches.forEach(m => addBuyBtn(m[2].trim(), m[1].trim()));
+            updateProgress(5);
+          }, 400);
+        }
+
+        waiting = false;
+        saveSession();
+      }
+    );
+  } catch(e) {
+    hideTyping();
+    setGenie('shocked');
+    addMsg('genie', 'Tive um probleminha técnico agora 😅 Tenta de novo em instantes!', 'shocked');
+    waiting = false;
+  }
+}
+
+function sc(btn) { send(btn.textContent); }
+
+// ── Pop-up de saída ────────────────────────────────────────────────────────
+let exitShown = false;
+
+document.addEventListener('mouseleave', (e) => {
+  // Só dispara quando mouse sai pelo topo (indo fechar a aba)
+  if (e.clientY > 10) return;
+  // Só mostra se já houve pelo menos 1 mensagem e não mostrou ainda
+  if (exitShown || history.length === 0) return;
+  exitShown = true;
+  document.getElementById('exitOverlay').classList.add('show');
+});
+
+function closeExit(voltar) {
+  document.getElementById('exitOverlay').classList.remove('show');
+  if (voltar) {
+    setTimeout(() => document.getElementById('inp').focus(), 300);
+  }
+}
+
+// ── Retorno de usuário (localStorage) ─────────────────────────────────────
+(function initSession() {
+  const session = loadSession();
+  if (!session || session.history.length < 2) return;
+
+  const savedHistory  = session.history;
+  const savedDiagStep = session.diagStep || 0;
+  const nome = extractName(savedHistory);
+
+  setTimeout(() => {
+    // Limpa chat e chips
+    document.getElementById('msgs').innerHTML = '';
+    if (showChips) { document.getElementById('chips').style.display = 'none'; showChips = false; }
+
+    // Monta mensagem de boas-vindas com opção de escolha
+    const saudacao = nome
+      ? `Ei, ${nome}! 👋 Vi que você estava aqui antes.`
+      : `Ei! 👋 Vi que você estava aqui antes.`;
+
+    const msgDiv = document.createElement('div');
+    msgDiv.className = 'msg g';
+    msgDiv.innerHTML = `
+      <div class="av g"><img src="${GENIE_IMGS.excited}" alt="Gênio"/></div>
+      <div class="bbl">
+        ${saudacao}<br><br>Quer continuar de onde paramos ou começar uma conversa nova?
+        <div class="session-btns">
+          <button class="session-btn session-btn-continue" onclick="continueSession()">↩ Continuar de onde parei</button>
+          <button class="session-btn session-btn-restart" onclick="restartSession()">✦ Nova conversa</button>
+        </div>
+      </div>`;
+    document.getElementById('msgs').appendChild(msgDiv);
+    setGenie('excited');
+  }, 300);
+
+  // Continua sessão anterior
+  window.continueSession = function() {
+    history  = savedHistory;
+    diagStep = savedDiagStep;
+    if (diagStep > 0) updateProgress(diagStep);
+
+    // Remove os botões de escolha
+    document.getElementById('msgs').innerHTML = '';
+
+    const continuacao = nome
+      ? `Ótimo, ${nome}! Continuamos. Me fala o que mais você precisa.`
+      : `Ótimo! Continuamos de onde paramos.`;
+    addMsg('genie', continuacao, 'happy');
+    saveSession();
+  };
+
+  // Reinicia do zero
+  window.restartSession = function() {
+    clearSession();
+    history  = [];
+    diagStep = 0;
+    document.getElementById('diagBar').style.display = 'none';
+
+    document.getElementById('msgs').innerHTML = '';
+    addMsg('genie', `E aí! Pode me chamar de Gênio 😄\n\nQual é aquela coisa do dia a dia que tá te incomodando — e que você já desistiu de resolver?`, 'happy');
+    setGenie('happy');
+
+    // Reexibe chips
+    showChips = true;
+    document.getElementById('chips').style.display = 'flex';
+  };
+})();
 </script>
 </body>
 </html>
