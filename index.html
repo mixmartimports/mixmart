@@ -823,13 +823,41 @@ function closeExit(voltar) {
     diagStep = savedDiagStep;
     if (diagStep > 0) updateProgress(diagStep);
 
-    // Remove os botões de escolha
-    document.getElementById('msgs').innerHTML = '';
+    const msgs = document.getElementById('msgs');
+    msgs.innerHTML = '';
+
+    // Separador visual do histórico
+    const sep = document.createElement('div');
+    sep.style.cssText = 'text-align:center;font-size:10px;color:#9CA3AF;padding:6px 0 10px;border-bottom:1px dashed rgba(30,144,255,.12);margin-bottom:6px';
+    sep.textContent = '— Conversa anterior —';
+    msgs.appendChild(sep);
+
+    // Renderiza mensagens do histórico
+    savedHistory.forEach(m => {
+      if (m.role === 'user') {
+        if (m.content.startsWith('[')) return; // ignora mensagens internas
+        addMsg('user', m.content);
+      } else if (m.role === 'assistant') {
+        const mood = detectGenieExpression(m.content);
+        const clean = cleanForDisplay(m.content).replace(/\n/g, '<br>');
+        if (clean) addMsg('genie', clean, mood);
+        // Re-adiciona botões de compra se havia produto recomendado
+        const linkMatches = [...m.content.matchAll(/\[PRODUTO:\s*([^\]]+)\]\s*\[LINK:\s*(https?:\/\/[^\]]+)\]/gi)];
+        linkMatches.forEach(match => addBuyBtn(match[2].trim(), match[1].trim()));
+      }
+    });
+
+    // Separador "continuando agora"
+    const sep2 = document.createElement('div');
+    sep2.style.cssText = 'text-align:center;font-size:10px;color:#9CA3AF;padding:10px 0 6px;border-top:1px dashed rgba(30,144,255,.12);margin-top:6px';
+    sep2.textContent = '— Continuando agora —';
+    msgs.appendChild(sep2);
 
     const continuacao = nome
-      ? `Ótimo, ${nome}! Continuamos. Me fala o que mais você precisa.`
+      ? `Ótimo, ${nome}! Continuamos de onde paramos.`
       : `Ótimo! Continuamos de onde paramos.`;
     addMsg('genie', continuacao, 'happy');
+    msgs.scrollTop = msgs.scrollHeight;
     saveSession();
   };
 
