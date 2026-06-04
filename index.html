@@ -184,8 +184,12 @@ body{font-family:'Plus Jakarta Sans',sans-serif;background:#F4F7FF;color:var(--n
   .trust-bar{padding:6px 12px;gap:12px;top:56px;overflow-x:auto;justify-content:flex-start}
   .trust-sep{display:none}
   .hero{flex-direction:column;padding:16px 12px;gap:14px;min-height:auto}
-  /* gênio oculto no mobile para dar espaço ao chat */
-  .genie-scene{display:none}
+  /* gênio pequeno no mobile — identidade da marca */
+  .genie-scene{display:flex !important;width:100% !important;justify-content:center !important;height:90px !important;margin-bottom:8px !important;overflow:hidden !important;flex-direction:row !important}
+  .genie-img-container{width:70px !important;height:90px !important;overflow:hidden !important;position:relative !important}
+  .genie-img{position:absolute !important;top:0 !important;left:50% !important;width:320px !important;height:500px !important;transform:translateX(-50%) scale(0.22) !important;transform-origin:top center !important;animation:none !important;filter:none !important}
+  .genie-glow{display:none !important}
+  .genie-badge{display:none !important}
   .chat-side{max-width:100%;width:100%}
   .chat-hl{margin-bottom:14px;padding:0 4px}
   .chat-hl h1{font-size:21px;line-height:1.2}
